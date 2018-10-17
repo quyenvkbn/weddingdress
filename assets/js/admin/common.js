@@ -77,7 +77,7 @@ function active(controller, id, question) {
                             alert('Bật bài viết thành công');
                             break;
                         case 'collection' :
-                            alert('Bật bài viết thành công');
+                            alert('Bật bộ sưu tập thành công');
                             break;
                         default :
                             alert('Bật danh mục thành công');
@@ -88,7 +88,7 @@ function active(controller, id, question) {
                 console.log(response);
             },
             error: function(jqXHR, exception){
-                if(jqXHR.status == 404 &&  jqXHR.responseJSON.message != 'undefined '){
+                if(jqXHR.status == 404 &&  jqXHR.responseJSON.message != 'undefined'){
                     alert(jqXHR.responseJSON.message);
                     location.reload();
                 }else{
