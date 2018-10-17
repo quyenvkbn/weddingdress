@@ -178,6 +178,11 @@ class MY_Model extends CI_Model {
 
         return $this->db->update($this->table, $data);
     }
+    public function multiple_update_by_collection_ids($collection_id, $data) {
+        $this->db->where('collection_id', $collection_id);
+
+        return $this->db->update($this->table, $data);
+    }
 
     public function count_active(){
         $query = $this->db->from($this->table)->where('is_activated', 1)->get();

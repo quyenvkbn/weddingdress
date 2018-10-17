@@ -195,14 +195,16 @@ defined('MESSAGE_ERROR_TURN_ON_ARTICEL_FOR_SELECTED') OR define('MESSAGE_ERROR_T
 defined('MESSAGE_ERROR_TURN_ON_POST_FOR_SELECTED') OR define('MESSAGE_ERROR_TURN_ON_POST_FOR_SELECTED', 'Bạn phải bật bài viết hoặc sản phẩm mà bạn đã chọn làm đường dẫn cho menu');
 defined('MESSAGE_ERROR_TURN_ON_CATEGORY_FOR_SELECTED_CREATE') OR define('MESSAGE_ERROR_TURN_ON_CATEGORY_FOR_SELECTED_CREATE', '---(Danh mục hiện đang tắt bạn phải bật danh mục mà menu đã chọn là menu chính)');
 defined('MESSAGE_ERROR_UPDATE_TURN_ON') OR define('MESSAGE_ERROR_UPDATE_TURN_ON', 'Bạn phải bật Menu cha của Menu hiện tại');
-defined('MESSAGE_ERROR_ACTIVE_PRODUCT') OR define('MESSAGE_ERROR_ACTIVE_PRODUCT', 'Bạn phải bật Danh mục sản phẩm của sản phẩm hiện tại');
+defined('MESSAGE_ERROR_ACTIVE_PRODUCT') OR define('MESSAGE_ERROR_ACTIVE_PRODUCT', 'Bạn phải bật Danh mục sản phẩm và bộ sưu tập của sản phẩm hiện tại');
 defined('MESSAGE_ERROR_MAIN_SELECTED') OR define('MESSAGE_ERROR_MAIN_SELECTED', 'Bạn phải chọn menu chính');
 
 
 
 defined('MESSAGE_ERROR_REMOVE') OR define('MESSAGE_ERROR_REMOVE', 'Bạn có %u menu là dạng menu trỏ trực tiếp đến bài viết hiện tại nên bạn không thể xóa.');
 defined('MESSAGE_ERROR_REMOVE_CATEGORY') OR define('MESSAGE_ERROR_REMOVE_CATEGORY', 'Bạn có %u menu chọn danh mục hiện tại là menu chính nên bạn không thể xóa.');
-defined('MESSAGE_FOREIGN_KEY_LINK_ERROR') OR define('MESSAGE_FOREIGN_KEY_LINK_ERROR', 'Category vẫn còn %s bài viết và có %s category là con nên không thẻ xóa!');
+defined('MESSAGE_FOREIGN_KEY_LINK_ERROR') OR define('MESSAGE_FOREIGN_KEY_LINK_ERROR', 'Danh mục vẫn còn %s bài viết và có %s danh mục là con nên không thể xóa!');
+defined('MESSAGE_FOREIGN_KEY_LINK_COLLECTION_ERROR') OR define('MESSAGE_FOREIGN_KEY_LINK_COLLECTION_ERROR', 'Bộ sưu tập hiện có %s sản phẩm chọn bộ sưu tập này nên bạn k thể xóa!');
+defined('MESSAGE_FOREIGN_KEY_LINK_PRODUCT_ERROR') OR define('MESSAGE_FOREIGN_KEY_LINK_PRODUCT_ERROR', 'Danh mục vẫn còn %s sản phẩm và có %s danh mục là con nên không thể xóa!');
 defined('MESSAGE_ERROR_REMOVE_CONFIG') OR define('MESSAGE_ERROR_REMOVE_CONFIG', 'Bạn không thể xóa cấu hình vì có %s sử dụng cấu hình!');
 
 /**

@@ -340,7 +340,8 @@ class Product extends Admin_Controller{
         if($id &&  is_numeric($id) && ($id > 0)){
             $product = $this->product_model->find($id);
             $product_category = $this->product_category_model->find($product['product_category_id']);
-            if($product_category['is_activated'] == 1){
+            $product_category = $this->collection_model->find($product['collection_id']);
+            if($product_category['is_activated'] == 1 || $product_category['is_activated'] == 1){
                 return $this->output
                     ->set_content_type('application/json')
                     ->set_status_header(404)

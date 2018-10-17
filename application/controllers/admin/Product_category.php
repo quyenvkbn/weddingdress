@@ -77,7 +77,7 @@ class Product_category extends Admin_Controller{
                 $slug = $this->input->post('slug_shared');
                 
                 $unique_slug = $this->product_category_model->build_unique_slug($slug);
-                if(!file_exists("assets/upload/".$this->data['controller']."/".$unique_slug) && !empty($_FILES['image_shared']['name'])){
+                if(!file_exists("assets/upload/".$this->data['controller']."/".$unique_slug)){
                     mkdir("assets/upload/".$this->data['controller']."/".$unique_slug, 0755);
                     mkdir("assets/upload/".$this->data['controller']."/".$unique_slug.'/thumb', 0755);
                 }
@@ -138,10 +138,9 @@ class Product_category extends Admin_Controller{
                     $unique_slug = $this->data['detail']['slug'];
                     if($unique_slug !== $this->input->post('slug_shared')){
                         $unique_slug = $this->product_category_model->build_unique_slug($this->input->post('slug_shared'));
-                    }
-                    if(!file_exists("assets/upload/".$this->data['controller']."/".$unique_slug) && !empty($_FILES['image_shared']['name'])){
-                        mkdir("assets/upload/".$this->data['controller']."/".$unique_slug, 0755);
-                        mkdir("assets/upload/".$this->data['controller']."/".$unique_slug.'/thumb', 0755);
+                        if(file_exists("assets/upload/".$this->data['controller']."/".$detail['slug'])) {
+                            rename("assets/upload/".$this->data['controller']."/".$detail['slug'], "assets/upload/".$this->data['controller']."/".$unique_slug);
+                        }
                     }
                     if(!empty($_FILES['image_shared']['name'])){
                         $image = $this->upload_image('image_shared', $_FILES['image_shared']['name'], 'assets/upload/'.$this->data['controller']."/".$unique_slug, 'assets/upload/'.$this->data['controller']."/".$unique_slug .'/thumb');
@@ -199,7 +198,7 @@ class Product_category extends Admin_Controller{
                 return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_ERROR_REMOVE_CATEGORY, count($menu_model)));
             }
             $where = array('product_category_id' => $id,'is_deleted' => 0);
-            $product = $this->product_model->find_rows($where);// lấy số bài viết thuộc về category
+            $product = $this->product_model->find_rows($where);// lấy số sản phẩm thuộc về category
             $where = array('parent_id' => $id);
             $parent_id = $this->product_category_model->find_rows($where);//lấy số con của category
             if($product == 0 && $parent_id == 0){
@@ -213,7 +212,7 @@ class Product_category extends Admin_Controller{
                 }
                 return $this->return_api(HTTP_NOT_FOUND,MESSAGE_REMOVE_ERROR);
             }else{
-                return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_FOREIGN_KEY_LINK_ERROR,$product,$parent_id));
+                return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_FOREIGN_KEY_LINK_PRODUCT_ERROR,$product,$parent_id));
             }
         }
         return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ID_ERROR);
@@ -251,7 +250,6 @@ class Product_category extends Admin_Controller{
                 return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ERROR_ACTIVE_CATEGORY);
             }
         }
-
         $data = array('is_activated' => 0);
         $update = $this->product_category_model->multiple_update_by_ids($id, $data);
 

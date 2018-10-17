@@ -154,10 +154,6 @@ class Collection extends Admin_Controller{
                             rename("assets/upload/".$this->data['controller']."/".$detail['slug'], "assets/upload/".$this->data['controller']."/".$unique_slug);
                         }
                     }
-                    if(!file_exists("assets/upload/".$this->data['controller']."/".$unique_slug)){
-                        mkdir("assets/upload/".$this->data['controller']."/".$unique_slug, 0755);
-                        mkdir("assets/upload/".$this->data['controller']."/".$unique_slug.'/thumb', 0755);
-                    }
                     if(!empty($_FILES['image_left']['name'])){
                         $image_left = $this->upload_image('image_left', $_FILES['image_left']['name'], 'assets/upload/'.$this->data['controller']."/".$unique_slug, 'assets/upload/'.$this->data['controller']."/".$unique_slug .'/thumb');
                     }
@@ -213,10 +209,6 @@ class Collection extends Admin_Controller{
             if(empty($detail)){
                 return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ISSET_ERROR);
             }
-            $menu_model = $this->menu_model->get_where_array(array('slug' => 'nhom/'.$detail['slug']));
-            if(count($menu_model) > 0){
-                return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_ERROR_REMOVE_CATEGORY, count($menu_model)));
-            }
             $where = array('collection_id' => $id,'is_deleted' => 0);
             $product = $this->product_model->find_rows($where);// lấy số bài viết thuộc về category
             $where = array('parent_id' => $id);
@@ -232,7 +224,7 @@ class Collection extends Admin_Controller{
                 }
                 return $this->return_api(HTTP_NOT_FOUND,MESSAGE_REMOVE_ERROR);
             }else{
-                return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_FOREIGN_KEY_LINK_ERROR,$product,$parent_id));
+                return $this->return_api(HTTP_NOT_FOUND,sprintf(MESSAGE_FOREIGN_KEY_LINK_COLLECTION_ERROR,$product,$parent_id));
             }
         }
         return $this->return_api(HTTP_NOT_FOUND,MESSAGE_ID_ERROR);
@@ -286,26 +278,12 @@ class Collection extends Admin_Controller{
     public function deactive(){
         $this->load->model('product_model');
         $id = $this->input->post('id');
-        $list_categories = $this->collection_model->get_by_parent_id(null, 'asc');
-        $this->get_multiple_posts_with_category($list_categories, $id, $ids);
-        $ids = array_unique($ids);
         $data = array('is_activated' => 1);
         $this->db->trans_begin();
-        $update = $this->collection_model->multiple_update_by_ids($ids, $data);
+        $update = $this->collection_model->multiple_update_by_ids($id, $data);
         if ($update == 1) {
-            $this->product_model->multiple_update_by_category_ids($ids, $data);
-            $collection = $this->collection_model->find($id);
-            $menu_model = $this->menu_model->get_where_array(array('slug' => 'nhom/'.$collection['slug']));
-            if(count($menu_model) > 0){
-                $data = array('is_activated' => 1);
-                foreach ($menu_model as $key => $value) {
-                    foreach ($this->get_id_children_and_id($value['id']) as $k => $val) {
-                        $this->menu_model->common_update($val, array_merge($data,$this->author_data));
-                    }
-                }
-            }
+            $this->product_model->multiple_update_by_collection_ids($id, $data);
         }
-
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();
             return $this->return_api(HTTP_BAD_REQUEST);
@@ -384,15 +362,5 @@ class Collection extends Admin_Controller{
             return true;
         }
         return false;
-    }
-
-    function get_multiple_posts_with_category($categories, $parent_id = 0, &$ids){
-        foreach ($categories as $key => $item){
-            $ids[] = $parent_id;
-            if ($item['parent_id'] == $parent_id){
-                $ids[] = $item['id'];
-                $this->get_multiple_posts_with_category($categories, $item['id'], $ids);
-            }
-        }
     }
 }
