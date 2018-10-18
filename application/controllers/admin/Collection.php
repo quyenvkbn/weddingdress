@@ -12,6 +12,7 @@ class Collection extends Admin_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('collection_model');
+        $this->load->model('banner_model');
         $this->load->helper('common');
         $this->load->helper('file');
 
@@ -64,7 +65,7 @@ class Collection extends Admin_Controller{
             $this->data['id'] = 0;
         }
         $this->load->helper('form');
-        $collection = $this->collection_model->get_by_parent_id_when_active(null,'asc');
+        $collection = $this->collection_model->get_by_parent_id(null,'asc');
         $this->build_new_category($collection,0,$this->data['collection']);
         if($this->input->post()){
             $this->load->library('form_validation');
@@ -127,7 +128,7 @@ class Collection extends Admin_Controller{
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
             $this->load->helper('form');
-            $collection = $this->collection_model->get_by_parent_id_when_active(null,'asc');
+            $collection = $this->collection_model->get_by_parent_id(null,'asc');
             $this->data['category'] = build_array_for_dropdown($this->collection_model->get_all_with_pagination_search(),$id);
             if($this->collection_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
@@ -283,6 +284,7 @@ class Collection extends Admin_Controller{
         $update = $this->collection_model->multiple_update_by_ids($id, $data);
         if ($update == 1) {
             $this->product_model->multiple_update_by_collection_ids($id, $data);
+            $this->banner_model->multiple_update_by_banner_ids($id, 1,$data);
         }
         if ($this->db->trans_status() === false) {
             $this->db->trans_rollback();

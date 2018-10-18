@@ -59,7 +59,7 @@ class Post_category extends Admin_Controller{
 		$this->load->helper('form');
         $this->load->library('form_validation');
 
-        $post_category = $this->post_category_model->get_by_parent_id_when_active(null,'asc');
+        $post_category = $this->post_category_model->get_by_parent_id(null,'asc');
         $this->data['post_category'] = $post_category;
 
         $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
@@ -257,14 +257,14 @@ class Post_category extends Admin_Controller{
     public function deactive(){
         $this->load->model('post_model');
         $id = $this->input->post('id');
-        $list_categories = $this->post_category_model->get_by_parent_id(null, 'asc');
+        $list_categories = $this->post_category_model->get_by_parent_id_when_active(null, 'asc');
         $this->get_multiple_posts_with_category($list_categories, $id, $ids);
         $ids = array_unique($ids);
         $data = array('is_activated' => 1);
         $this->load->model("menu_model");
         $post_category = $this->post_category_model->find($id);
         $menu_model = $this->menu_model->get_row_where_array(array('slug' => 'danh-muc/'.$post_category['slug']));
-        if(count($menu_model) > 0){
+        if(!empty($menu_model)){
             $reponse = array(
                 'csrf_hash' => $this->security->get_csrf_hash(),
                 'id' => $menu_model['id']

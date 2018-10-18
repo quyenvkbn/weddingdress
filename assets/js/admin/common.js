@@ -30,10 +30,10 @@ function remove(controller, id){
             method: "post",
             url: url,
             data: {
-                id : id, csrf_sitecom_token : document.getElementById('csrf').value
+                id : id, csrf_sitecom_token : document.getElementById('csrf_sitecom_token').value
             },
             success: function(response){
-                document.getElementById('csrf').value = response.reponse.csrf_hash;
+                document.getElementById('csrf_sitecom_token').value = response.reponse.csrf_hash;
                 if(response.status == 200 && response.isExisted == true){
                     console.log(response);
                     console.log(response.message);
@@ -64,10 +64,10 @@ function active(controller, id, question) {
             method: "post",
             url: url,
             data: {
-                id : id, csrf_sitecom_token : document.getElementById('csrf').value
+                id : id, csrf_sitecom_token : document.getElementById('csrf_sitecom_token').value
             },
             success: function(response){
-                document.getElementById('csrf').value = response.reponse.csrf_hash;
+                document.getElementById('csrf_sitecom_token').value = response.reponse.csrf_hash;
                 if(response.status == 200){
                     switch(controller){
                         case 'product' :
@@ -78,6 +78,9 @@ function active(controller, id, question) {
                             break;
                         case 'collection' :
                             alert('Bật bộ sưu tập thành công');
+                            break;
+                        case 'banner' :
+                            alert('Bật banner thành công');
                             break;
                         default :
                             alert('Bật danh mục thành công');
@@ -106,10 +109,10 @@ function deactive(controller, id, question) {
             method: "post",
             url: url,
             data: {
-                id : id, csrf_sitecom_token : document.getElementById('csrf').value
+                id : id, csrf_sitecom_token : document.getElementById('csrf_sitecom_token').value
             },
             success: function(response){
-                document.getElementById('csrf').value = response.reponse.csrf_hash;
+                document.getElementById('csrf_sitecom_token').value = response.reponse.csrf_hash;
                 if(response.status == 200){
                     if(controller == 'post' || controller == 'product'){
                         if(response.reponse.id != undefined){

@@ -14,6 +14,7 @@
 <!-- AdminLTE App -->
 <script src="<?php echo site_url('assets/lib/') ?>dist/js/adminlte.min.js"></script>
 <script src="<?php echo site_url('assets/js/admin/') ?>script.js"></script>
+<script src="<?php echo site_url('assets/js/admin/') ?>common.js"></script>
 <script src="<?php echo site_url('assets/lib/bootstrap/js/bootstrap-datepicker.js') ?>"></script>
 
 </html>

@@ -3,20 +3,21 @@
 
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Chi tiết
-            <small>
-                Danh Mục
-            </small>
-        </h1>
-        <ol class="breadcrumb">
-            <li><a href="#"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="#"><i class="fa fa-dashboard"></i> Chi tiết</a></li>
-            <li class="active">
-                Danh Mục
-            </li>
-        </ol>
+    <section class="content-header" style="height: 50px;">
+        <div class="col-xs-6"> 
+            
+            <h3>
+                Chi tiết
+                <small>
+                    bài viết
+                </small>
+            </h3>
+        </div>
+        <div class="col-xs-6" style="padding-right: 0px;">
+            <div style="margin-top: 10px;float: right;">
+                <a style="" href="<?php echo base_url('admin/'.$controller.'/edit/'.$detail['id']) ?>" class="btn btn-warning" role="button">Chỉnh sửa</a>
+            </div>
+        </div>
     </section>
 
 <?php
@@ -54,7 +55,11 @@
                                             <tr>
                                                 <th>Trạng thái</th>
                                                 <td>
-                                                    <?php echo ($detail['is_activated'] == 0)? '<span class="label label-success">Đang sử dụng</span>' : '<span class="label label-warning">Không sử dụng</span>' ?>   
+                                                    <?php if ($detail['is_activated'] == 0): ?>
+                                                        <span class="label label-success" onclick="deactive('post', <?php echo $detail['id'] ?>, 'Chăc chắn tắt bài viết')" class="dataActionDelete" title="Tắt danh mục" style="cursor: pointer;">Đang sử dụng</span>
+                                                    <?php else: ?>
+                                                        <span class="label label-warning" onclick="active('post', <?php echo $detail['id'] ?>, 'Chăc chắn bật bài viết')" class="dataActionDelete" title="Bật danh mục" style="cursor: pointer;">Không sử dụng</span>
+                                                    <?php endif ?> 
                                                 </td>
                                             </tr>
                                             <tr>

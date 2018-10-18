@@ -27,7 +27,7 @@
                     <?php echo $this->session->flashdata('message_success'); ?>
                 </div>
             <?php endif ?>
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
@@ -158,8 +158,8 @@
     </section>
     <!-- /.content -->
 </div>
-<script src="<?php echo site_url('assets/js/admin/') ?>common.js"></script>
 <script type="text/javascript">
+    var HOSTNAMEADMIN = 'http://localhost/weddingdress/admin';
     document.querySelector('.modal-footer a').setAttribute('href',HOSTNAMEADMIN+'/product/create/'+document.getElementById('select_templates').value);
     function submit_shared(val){
         document.querySelector('.modal-footer a').setAttribute('href',HOSTNAMEADMIN+'/product/create/'+val);

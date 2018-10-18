@@ -55,8 +55,8 @@ class Product extends Admin_Controller{
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_CONFIG_ERROR);
                 redirect('admin/'. $this->data['controller'] .'', 'refresh');
             }
-            $this->data['collection'] = $this->collection_model->get_by_parent_id_when_active(null,'asc');
-            $product_category = $this->product_category_model->get_by_parent_id_when_active(null,'asc');
+            $this->data['collection'] = $this->collection_model->get_by_parent_id(null,'asc');
+            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
             $this->build_new_category($product_category,0,$this->data['product_category']);
             if($this->input->post()){
                 $this->load->library('form_validation');
@@ -193,7 +193,7 @@ class Product extends Admin_Controller{
 
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
-            $product_category = $this->product_category_model->get_by_parent_id_when_active(null,'asc');
+            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
             $this->load->helper('form');
             if($this->product_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
@@ -209,7 +209,7 @@ class Product extends Admin_Controller{
             $subs = $this->product_model->get_by_parent_id($id, 'asc');
             $this->build_new_category($product_category,0,$this->data['product_category'],$subs['product_category_id']);
             $this->data['detail'] = build_language($this->data['controller'], $detail, array('title','description','content', 'data_lang'), $this->page_languages);
-            $this->data['collection'] = $this->collection_model->get_by_parent_id_when_active(null,'asc');
+            $this->data['collection'] = $this->collection_model->get_by_parent_id(null,'asc');
             if($this->input->post()){
                 $this->load->library('form_validation');
                 if($this->check_all_file_img($_FILES) === false){
@@ -340,8 +340,8 @@ class Product extends Admin_Controller{
         if($id &&  is_numeric($id) && ($id > 0)){
             $product = $this->product_model->find($id);
             $product_category = $this->product_category_model->find($product['product_category_id']);
-            $product_category = $this->collection_model->find($product['collection_id']);
-            if($product_category['is_activated'] == 1 || $product_category['is_activated'] == 1){
+            $collection = $this->collection_model->find($product['collection_id']);
+            if($product_category['is_activated'] == 1 || $collection['is_activated'] == 1){
                 return $this->output
                     ->set_content_type('application/json')
                     ->set_status_header(404)

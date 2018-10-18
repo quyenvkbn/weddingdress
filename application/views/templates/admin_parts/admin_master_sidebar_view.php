@@ -53,6 +53,21 @@
                     </a>
                 </li> -->
 
+                <li class="active">
+                    <a href="<?php echo base_url('admin/config_contact') ?>">
+                        <i class="fa fa-inbox"></i> <span>Contact</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="<?php echo base_url('admin/banner') ?>">
+                        <i class="fa fa-inbox"></i> <span>Banner</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="<?php echo base_url('admin/collection') ?>">
+                        <i class="fa fa-inbox"></i> <span>Bộ sưu tập</span>
+                    </a>
+                </li>
                 <li class="<?php echo ($this->uri->segment(2) == 'product' || $this->uri->segment(2) == 'product_category')? 'active' : 'treeview' ?>">
                     <a href="">
                         <i class="fa fa-newspaper-o"></i>
@@ -86,16 +101,6 @@
                             <a href="<?php echo base_url('admin/post') ?>"><i class="fa fa-list"></i> Danh sách bài viết</a>
                         </li>
                     </ul>
-                </li>
-                <li class="active">
-                    <a href="<?php echo base_url('admin/collection') ?>">
-                        <i class="fa fa-inbox"></i> <span>Bộ sưu tập</span>
-                    </a>
-                </li>
-                <li class="active">
-                    <a href="<?php echo base_url('admin/config_contact') ?>">
-                        <i class="fa fa-inbox"></i> <span>Contact</span>
-                    </a>
                 </li>
                 <!-- <li class="active">
                     <a href="<?php echo base_url('admin/menu') ?>">
