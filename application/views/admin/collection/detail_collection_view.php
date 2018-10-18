@@ -28,7 +28,7 @@
         <?php endif ?>
         <!-- Small boxes (Stat box) -->
         <div class="row">
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
             <div class="col-md-9">
                 <div class="box">
                     <div class="box-header">
@@ -53,9 +53,9 @@
                                             <th>Trạng Thái</th>
                                             <td>
                                                 <?php if ($detail['is_activated'] == 0): ?>
-                                                    <span class="label label-success" onclick="deactive('product_category', <?php echo $detail['id'] ?>, 'Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con và thực đơn của danh mục cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục" style="cursor: pointer;">Đang sử dụng</span>
+                                                    <span class="label label-success" onclick="deactive('collection', <?php echo $detail['id'] ?>, 'Chăc chắn tắt bộ sưu tập(Lưu ý: Khi tắt bộ sưu tập thì tất cả sản phẩm thuộc bộ sưu tập và banner sử dụng bộ sưu tập cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục" style="cursor: pointer;">Đang sử dụng</span>
                                                 <?php else: ?>
-                                                    <span class="label label-warning" onclick="active('product_category', <?php echo $detail['id'] ?>, 'Chăc chắn bật danh mục(Lưu ý: Khi bật danh mục thì tất cả danh mục con và thực đơn của danh mục cũng bật theo)')" class="dataActionDelete" title="Bật danh mục" style="cursor: pointer;">Không sử dụng</span>
+                                                    <span class="label label-warning" onclick="active('collection', <?php echo $detail['id'] ?>, 'Chăc chắn bật bộ sưu tập')" class="dataActionDelete" title="Bật danh mục" style="cursor: pointer;">Không sử dụng</span>
                                                 <?php endif ?>
                                             </td>
                                         </tr>

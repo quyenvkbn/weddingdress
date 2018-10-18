@@ -49,29 +49,23 @@
 <input type="text" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" placeholder="" class="form-control hidden" id="csrf_sitecom_token">
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
-    <section class="content-header">
-        <h1>
-            Chi tiết
-            <small>
-                Danh Mục
-            </small>
-        </h1>
-        <ol class="breadcrumb">
-            <div style="margin-top: -10px;">
+    <section class="content-header" style="height: 50px;">
+        <div class="col-xs-6"> 
+            
+            <h3>
+                Chi tiết
+                <small>
+                    Sản phẩm
+                </small>
+            </h3>
+        </div>
+        <div class="col-xs-6" style="padding-right: 0px;">
+            <div style="margin-top: 10px;float: right;">
                 <a style="" href="<?php echo base_url('admin/'.$controller.'/edit/'.$detail['id']) ?>" class="btn btn-warning" role="button">Chỉnh sửa</a>
             </div>
-        </ol>
+        </div>
     </section>
 
-<?php
-
-// echo '<pre>';
-// print_r($templates);
-// echo '</pre>';
-// echo '<pre>';
-// print_r($detail);
-// echo '</pre>';
-?>
     <!-- Main content -->
     <section class="content">
         <!-- Small boxes (Stat box) -->
@@ -103,7 +97,11 @@
                                                     <tr>
                                                         <th>Trạng thái</th>
                                                         <td>
-                                                            <?php echo ($detail['is_activated'] == 0)? '<span class="label label-success">Đang sử dụng</span>' : '<span class="label label-warning">Không sử dụng</span>' ?>   
+                                                            <?php if ($detail['is_activated'] == 0): ?>
+                                                                <span class="label label-success" onclick="deactive('product', <?php echo $detail['id'] ?>, 'Chăc chắn tắt sản phẩm')" class="dataActionDelete" title="Tắt danh mục" style="cursor: pointer;">Đang sử dụng</span>
+                                                            <?php else: ?>
+                                                                <span class="label label-warning" onclick="active('product', <?php echo $detail['id'] ?>, 'Chăc chắn bật sản phẩm')" class="dataActionDelete" title="Bật danh mục" style="cursor: pointer;">Không sử dụng</span>
+                                                            <?php endif ?> 
                                                         </td>
                                                     </tr>
                                                     <tr>

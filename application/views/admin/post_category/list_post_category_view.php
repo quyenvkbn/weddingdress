@@ -13,7 +13,7 @@
     </section>
 
     <!-- Main content -->
-    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
+    <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
     <section class="content">
         <div class="row">
             <?php if ($this->session->flashdata('message_error')): ?>
@@ -30,7 +30,6 @@
                     <?php echo $this->session->flashdata('message_success'); ?>
                 </div>
             <?php endif ?>
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
@@ -216,5 +215,5 @@
         }
     }
 ?>
-<script src="<?php echo site_url('assets/js/admin/') ?>common.js"></script>
+
 

@@ -183,6 +183,11 @@ class MY_Model extends CI_Model {
 
         return $this->db->update($this->table, $data);
     }
+    public function multiple_update_by_banner_ids($banner_id,$type, $data) {
+        $this->db->where(array('category_id'=> $banner_id,'type' => $type));
+
+        return $this->db->update($this->table, $data);
+    }
 
     public function count_active(){
         $query = $this->db->from($this->table)->where('is_activated', 1)->get();

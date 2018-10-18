@@ -196,6 +196,7 @@ defined('MESSAGE_ERROR_TURN_ON_POST_FOR_SELECTED') OR define('MESSAGE_ERROR_TURN
 defined('MESSAGE_ERROR_TURN_ON_CATEGORY_FOR_SELECTED_CREATE') OR define('MESSAGE_ERROR_TURN_ON_CATEGORY_FOR_SELECTED_CREATE', '---(Danh mục hiện đang tắt bạn phải bật danh mục mà menu đã chọn là menu chính)');
 defined('MESSAGE_ERROR_UPDATE_TURN_ON') OR define('MESSAGE_ERROR_UPDATE_TURN_ON', 'Bạn phải bật Menu cha của Menu hiện tại');
 defined('MESSAGE_ERROR_ACTIVE_PRODUCT') OR define('MESSAGE_ERROR_ACTIVE_PRODUCT', 'Bạn phải bật Danh mục sản phẩm và bộ sưu tập của sản phẩm hiện tại');
+defined('MESSAGE_ERROR_ACTIVE_BANNER') OR define('MESSAGE_ERROR_ACTIVE_BANNER', 'Bạn phải bật %s mà banner đã chọn hiện tại');
 defined('MESSAGE_ERROR_MAIN_SELECTED') OR define('MESSAGE_ERROR_MAIN_SELECTED', 'Bạn phải chọn menu chính');
 
 

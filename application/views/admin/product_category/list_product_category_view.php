@@ -28,7 +28,7 @@
                     <?php echo $this->session->flashdata('message_success'); ?>
                 </div>
             <?php endif ?>
-            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
+            <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
             <div class="col-md-12">
                 <div class="box">
                     <div class="box-header">
@@ -129,7 +129,7 @@
                     </td>
                     <td>
                         <?php if ($value['is_activated'] == 0): ?>
-                            <a href="javascript:void(0);" onclick="deactive('product_category', <?php echo $value['id'] ?>, 'Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục"><i class="fa fa-low-vision" aria-hidden="true"></i> </a>
+                            <a href="javascript:void(0);" onclick="deactive('product_category', <?php echo $value['id'] ?>, 'Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và banner sử dụng danh mục cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục"><i class="fa fa-low-vision" aria-hidden="true"></i> </a>
                             <!-- Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và các menu chọn danh mục là menu chính cũng tắt theo -->
                         <?php else: ?>
                             <a href="javascript:void(0);" onclick="active('product_category', <?php echo $value['id'] ?>, 'Chăc chắn bật danh mục')" class="dataActionDelete" title="Bật danh mục"><i class="fa fa-eye" aria-hidden="true"></i> </a>
@@ -173,4 +173,3 @@
         }
     }
 ?>
-<script src="<?php echo site_url('assets/js/admin/') ?>common.js"></script>

@@ -12,6 +12,7 @@ class Product_category extends Admin_Controller{
     function __construct(){
         parent::__construct();
         $this->load->model('product_category_model');
+        $this->load->model('banner_model');
         $this->load->helper('common');
         $this->load->helper('file');
 
@@ -64,8 +65,8 @@ class Product_category extends Admin_Controller{
             $this->data['id'] = 0;
         }
         $this->load->helper('form');
-        $product_category = $this->product_category_model->get_by_parent_id_when_active(null,'asc');
-        $this->build_new_category($product_category,0,$this->data['product_category']);
+        $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
+        $this->build_new_category($product_category,0,$this->data['product_category'],$this->data['id']);
         if($this->input->post()){
             $this->load->library('form_validation');
             $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
@@ -118,7 +119,7 @@ class Product_category extends Admin_Controller{
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
             $this->load->helper('form');
-            $product_category = $this->product_category_model->get_by_parent_id_when_active(null,'asc');
+            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
             $this->data['category'] = build_array_for_dropdown($this->product_category_model->get_all_with_pagination_search(),$id);
             if($this->product_category_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
@@ -274,6 +275,7 @@ class Product_category extends Admin_Controller{
 
         if ($update == 1) {
             $this->product_model->multiple_update_by_category_ids($ids, $data);
+            $this->banner_model->multiple_update_by_banner_ids($id, 0,$data);
         }
 
         if ($this->db->trans_status() === false) {

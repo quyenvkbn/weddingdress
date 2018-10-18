@@ -21,7 +21,7 @@
 
     <!-- Main content -->
     <section class="content">
-        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf" />
+        <input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
         <!-- Small boxes (Stat box) -->
         <div class="row">
             <div class="col-md-9">
