@@ -116,10 +116,18 @@
                                                         <th>Loại sản phẩm</th>
                                                         <td><?php echo ($detail['type'] == 0)? 'Váy cưới' : 'Phụ tùng';?></td>
                                                     </tr>
-                                                    <tr>
-                                                        <th>Bộ sưu tập</th>
-                                                        <td><a href="<?php echo base_url('admin/collection/detail/'.$collection['id']) ?>"><?php echo $collection['title_vi'] ?></a></td>
-                                                    </tr>
+                                                    <?php if ($detail['type'] == 0): ?>
+                                                        <tr>
+                                                            <th>Bộ sưu tập</th>
+                                                            <td>
+                                                                <?php if (!empty($collection['collection_title'])): ?>
+                                                                    <a href="<?php echo base_url('admin/collection/detail/'.$collection['id']) ?>"><?php echo $collection['collection_title'] ?></a>
+                                                                <?php else:?>
+                                                                    Sản phẩm không có bộ sưu tập
+                                                                <?php endif ?>
+                                                            </td>
+                                                        </tr>
+                                                    <?php endif ?>
                                                     <?php if (!empty($data)): ?>
                                                         <?php foreach ($data as $key => $value): ?>
                                                             <?php if ($templates[$key]['type'] != 'radio' && $templates[$key]['type'] != 'checkbox' && $templates[$key]['type'] != 'select' && $templates[$key]['type'] != 'file'): ?>

@@ -63,7 +63,7 @@
                                     <th>No.</th>
                                     <th>Hình ảnh</th>
                                     <th>Tiêu đề</th>
-                                    <th>Danh mục</th>
+                                    <th>Kiểu danh mục</th>
                                     <th>Trạng thái</th>
                                     <th>Detail</th>
                                     <th>Action</th>
@@ -108,21 +108,20 @@
             foreach ($cate_child as $key => $value){
             ?>
             <tbody class="treeview ui-sortable-handle" id="<?php echo ($key + 1) . '-' . $value['id'] ?>" <?php echo ($value['parent_id'] == 0)? 'style="cursor: pointer;"' : '' ?> >
-                <tr style="background: #DFFDE0" class="remove_<?php echo $value['id'] ?>" >
+                <tr class="remove_<?php echo $value['id'] ?>" >
+                    <td>
+                        <?php echo $key+1; ?>
+                    </td>
                     <td>
                         <div class="mask_sm">
                             <img src="<?php echo base_url('assets/upload/'.$controller.'/'.$value['slug'].'/'.$value['image']) ?>" alt="anh-cua-<?php echo $value['slug'] ?>" width=150px>
                         </div>
                     </td>
                     <td><?php echo $value['title'] ?></td>
-                    <td><?php echo $value['parent_title'] ?></td>
+                    <td><?php echo $value['type'] == 0 ? 'Váy' : 'Phụ kiện' ?></td>
                     <td>
                         <?php echo ($value['is_activated'] == 0)? '<span class="label label-success">Đang sử dụng</span>' : '<span class="label label-warning">Không sử dụng</span>' ?>   
                     </td>
-                    <td><strong style="color: blue">Danh mục cấp <?php echo $sort ?></strong></td>
-                    <td>
-                       <button class="btn btn-primary collapsed btn-margin btn-dropdown-cate" type="button" data-toggle="collapse" href="#<?php echo $value['id'] ?>" aria-expanded="true" aria-controls="messageContent">Xem</button>
-                   </td>
                    <td>
                     <a href="<?php echo base_url('admin/'.$controller.'/detail/'.$value['id']) ?>"
                         <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">See Detail</button>
@@ -151,7 +150,7 @@
                                             <tr>
                                                 <th>Hình ảnh</th>
                                                 <th>Tiêu đề</th>
-                                                <th>Danh mục</th>
+                                                <th>Kiểu danh mục</th>
                                                 <th>Trạng thái</th>
                                                 <th>Cấp danh mục</th>
                                                 <th>Danh mục con</th>

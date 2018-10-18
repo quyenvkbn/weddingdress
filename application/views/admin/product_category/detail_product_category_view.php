@@ -53,19 +53,10 @@
                                         </tr>
                                         <tr>
                                             <th>
-                                                <?php if ($detail['parent_id'] != 0): ?>
-                                                    Danh Mục Cha
-                                                <?php else: ?>
-                                                    Danh Mục
-                                                <?php endif ?>
+                                                Kiểu danh mục
                                             </th>
                                             <td>
-                                                <?php if ($detail['parent_id'] != 0): ?>
-                                                    <a href="<?php echo base_url('admin/'. $controller .'/detail/'.$detail['parent_id']) ?>" class="" ><?php echo $detail['parent_title'] ?></a>
-                                                <?php else: ?>
-                                                    <?php echo $detail['parent_title'] ?>
-                                                <?php endif ?>
-                                                
+                                                <?php echo $detail['type'] == 0 ? 'Váy' : 'Phụ kiện' ?>
                                             </td>
                                         </tr>
                                         <tr>
@@ -108,27 +99,27 @@
                                                         <tbody>
                                                             <?php if ($k == 'title' && in_array($k, $request_language_template)): ?>
                                                                 <tr>
-                                                                    <th style="width: 100px">Tiêu đề: </th>
+                                                                    <th style="width: 140px">Tiêu đề: </th>
                                                                     <td><?php echo $detail['title_'. $key] ?></td>
                                                                 </tr>
                                                             <?php elseif($k == 'metakeywords' && in_array($k, $request_language_template)): ?>
                                                                 <tr>
-                                                                    <th style="width: 100px">Giới thiệu: </th>
+                                                                    <th style="width: 140px">Từ khóa meta: </th>
                                                                     <td><?php echo $detail['metakeywords_'. $key] ?></td>
                                                                 </tr>
                                                             <?php elseif($k == 'metadescription' && in_array($k, $request_language_template)): ?>
                                                                 <tr>
-                                                                    <th style="width: 100px">Giới thiệu: </th>
+                                                                    <th style="width: 140px">Mô tả meta: </th>
                                                                     <td><?php echo $detail['metadescription_'. $key] ?></td>
                                                                 </tr>
                                                             <?php elseif($k == 'description' && in_array($k, $request_language_template)): ?>
                                                                 <tr>
-                                                                    <th style="width: 100px">Giới thiệu: </th>
+                                                                    <th style="width: 140px">Giới thiệu: </th>
                                                                     <td><?php echo $detail['description_'. $key] ?></td>
                                                                 </tr>
                                                             <?php elseif($k == 'content' && in_array($k, $request_language_template)): ?>
                                                                 <tr>
-                                                                    <th style="width: 100px">Nội dung: </th>
+                                                                    <th style="width: 140px">Nội dung: </th>
                                                                     <td><?php echo $detail['content_'. $key] ?></td>
                                                                 </tr>
                                                             <?php endif ?>
@@ -177,34 +168,6 @@
                         <h3 class="box-title">Hình ảnh</h3>
                         <img src="<?php echo base_url('assets/upload/'.$controller.'/'.$detail['slug'].'/' .$detail['image']) ?>" alt="anh-cua-<?php echo $detail['slug'] ?>" width="100%" > 
                     </div>
-                </div>
-                <div class="box box-default">
-                    <div class="box-header">
-                        <h3 class="box-title">Thêm mới danh mục con</h3>
-                    </div>
-                    <div class="box-body">
-                        &nbsp&nbsp&nbsp&nbsp&nbsp&nbsp
-                        <a href="<?php echo base_url('admin/'.$controller.'/create/'.$detail['id']) ?>" class="btn btn-success" role="button">Thêm mới danh mục con</a>
-                    </div>
-                </div>
-                <div class="box box-primary">
-                    <div class="box-header">
-                        <h3 class="box-title">Danh Mục Con</h3>
-                    </div>
-                    <?php if ($sub_category): ?>
-                        <?php foreach ($sub_category as $key => $value): ?>
-                            <div class="box-body">
-                                <a href="<?php echo base_url('admin/'.$controller.'/detail/'.$value['id']) ?>" class="btn btn-block btn-social btn-dropbox" role="button">
-                                    <i class="fa fa-link" aria-hidden="true"></i>
-                                    <?php echo $value['title'] ?>
-                                </a>
-                            </div>
-                        <?php endforeach ?>
-                    <?php else: ?>
-                        <div class="box-body">
-                            Hiện không có danh mục nhỏ
-                        </div>
-                    <?php endif ?>
                 </div>
             </div>
         </div>

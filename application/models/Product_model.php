@@ -97,7 +97,7 @@ class Product_model extends MY_Model{
     }
     public function get_by_slug($slug, $select = array(), $lang = '') {
         $this->db->query('SET SESSION group_concat_max_len = 10000000');
-        $this->db->select($this->table .'.*');
+        $this->db->select($this->table .'.*,'.$this->table.'_category_lang.title as parent_title, collection_lang.title as collection_title');
         if(in_array('title', $select)){
             $this->db->select('GROUP_CONCAT('. $this->table_lang .'.title ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_title');
         }
@@ -119,8 +119,12 @@ class Product_model extends MY_Model{
         
         $this->db->from($this->table);
         $this->db->join($this->table_lang, $this->table_lang .'.'. $this->table .'_id = '. $this->table .'.id', 'left');
+        $this->db->join('product_category_lang', 'product_category_lang.product_category_id = '. $this->table .'.'. $this->table.'_category_id', 'left');
+        $this->db->join('collection_lang', 'collection_lang.collection_id = '. $this->table .'.collection_id', 'left');
         if($lang != ''){
             $this->db->where($this->table_lang .'.language', $lang);
+            $this->db->where('product_category_lang.language', $lang);
+            $this->db->where('collection_lang.language', $lang);
         }
         $this->db->where($this->table .'.is_deleted', 0);
         $this->db->where($this->table .'.is_activated', 0);

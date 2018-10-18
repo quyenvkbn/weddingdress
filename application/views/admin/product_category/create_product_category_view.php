@@ -48,12 +48,10 @@
                         </div>
 
                         <div class="form-group col-xs-12">
-                            <?php
-                            echo form_label('Danh mục', 'parent_id_shared');
-                            echo form_error('parent_id_shared');
-                            ?>
-                            <select name="parent_id_shared" class="form-control">
-                                <?php echo $product_category; ?>
+                            <label class="control-label">Loại danh mục</label>
+                            <select name="type" id="select_templates" class="form-control" required="required" onchange="check_type_product(this)">
+                                <option value="0">Váy cưới</option>
+                                <option value="1">Phụ kiện</option>
                             </select>
                         </div>
 

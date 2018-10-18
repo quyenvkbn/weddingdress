@@ -60,13 +60,12 @@ class Product_category extends Admin_Controller{
 
     public function create($id = ''){
         if(isset($id) && is_numeric($id)){
+            redirect('admin/'. $this->data['controller'], 'refresh');
             $this->data['id'] = $id;
         }else{
             $this->data['id'] = 0;
         }
         $this->load->helper('form');
-        $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
-        $this->build_new_category($product_category,0,$this->data['product_category'],$this->data['id']);
         if($this->input->post()){
             $this->load->library('form_validation');
             $this->form_validation->set_rules('title_vi', 'Tiêu đề', 'required');
@@ -87,7 +86,8 @@ class Product_category extends Admin_Controller{
                 }
                 $shared_request = array(
                     'slug' => $unique_slug,
-                    'parent_id' => $this->input->post('parent_id_shared')
+                    'parent_id' => 0,
+                    'type' => $this->input->post('type')
                 );
                 if(isset($image)){
                     $shared_request['image'] = $image;
@@ -119,14 +119,11 @@ class Product_category extends Admin_Controller{
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
             $this->load->helper('form');
-            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
-            $this->data['category'] = build_array_for_dropdown($this->product_category_model->get_all_with_pagination_search(),$id);
             if($this->product_category_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
                 redirect('admin/'. $this->data['controller'] .'', 'refresh');
             }
             $detail = $this->product_category_model->get_by_id($id, $this->request_language_template);
-            $this->build_new_category($product_category,0,$this->data['product_category'],$detail['parent_id'],$id);
             $this->data['detail'] = build_language($this->data['controller'], $detail, $this->request_language_template, $this->page_languages);
             if($this->input->post()){
                 $this->load->library('form_validation');
@@ -147,7 +144,7 @@ class Product_category extends Admin_Controller{
                         $image = $this->upload_image('image_shared', $_FILES['image_shared']['name'], 'assets/upload/'.$this->data['controller']."/".$unique_slug, 'assets/upload/'.$this->data['controller']."/".$unique_slug .'/thumb');
                     }
                     $shared_request = array(
-                        'parent_id' => $this->input->post('parent_id_shared')
+                        'type' => $this->input->post('type')
                     );
                     if($unique_slug != $this->data['detail']['slug']){
                         $shared_request['slug'] = $unique_slug;

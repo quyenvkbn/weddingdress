@@ -64,6 +64,8 @@ $route['admin'] = 'admin/dashboard';
 
 $route['san-pham/([a-zA-Z0-9-_]+)'] = 'product/detail/$1';
 $route['nhom/([a-zA-Z0-9-_]+)'] = 'product/category/$1';
+$route['nhom'] = 'product/index';
 
 $route['bai-viet/([a-zA-Z0-9-_]+)'] = 'post/detail/$1';
 $route['danh-muc/([a-zA-Z0-9-_]+)'] = 'post/category/$1';
+$route['danh-muc'] = 'post/index';

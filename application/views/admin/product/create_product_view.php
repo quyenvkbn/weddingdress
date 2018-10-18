@@ -77,7 +77,14 @@
                                     case 'select':
                                         $select = '<option value="">Click để chọn</option>';
                                         if($key == 'parent_id_shared'){
-                                            $select.= $product_category;
+                                            $select.= $type_dress;
+                                            $a_language.='<div class="form-group col-xs-12" >
+                                                <label class="control-label">Kiểu danh mục sản phẩm</label>
+                                                <select name="type" id="select_templates" class="form-control" required="required" onchange="check_type_product(this)">
+                                                    <option value="0" selected>Váy</option>
+                                                    <option value="1">Phụ kiện</option>
+                                                </select>
+                                            </div>';
                                         }else{
                                             foreach ($value['choice']['vi'] as $k => $val) {
                                                 $select .= '<option value="' . $k . '">' . $val . '</option>';
@@ -184,13 +191,6 @@
                                     <h4 class="box-title">Chi tiết sản phẩm</h4>
                                     <div class="row">
                                         <span><?php echo $this->session->flashdata('message'); ?></span>
-                                    </div>
-                                    <div class="col-md-12" style="margin-bottom: 10px;">
-                                        <label class="control-label">Kiểu sản phẩm</label>
-                                        <select name="type" id="select_templates" class="form-control" required="required" onchange="check_type_product(this)">
-                                            <option value="0">Váy cưới</option>
-                                            <option value="1">Phụ kiện</option>
-                                        </select>
                                     </div>
                                     <div class="col-md-12 showdate" style="margin-bottom: 10px;">
                                         <label class="control-label">Bộ sưu tập</label>
@@ -313,7 +313,8 @@
         </div>
     </div>
 </section>
-
+<input type="hidden" id="type_dress" value='<option value="">Click để chọn</option><?php echo $type_dress; ?>'>
+<input type="hidden" id="type_accessories" value='<option value="">Click để chọn</option><?php echo $type_accessories; ?>'>
 
 
 
