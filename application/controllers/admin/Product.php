@@ -56,8 +56,10 @@ class Product extends Admin_Controller{
                 redirect('admin/'. $this->data['controller'] .'', 'refresh');
             }
             $this->data['collection'] = $this->collection_model->get_by_parent_id(null,'asc');
-            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
-            $this->build_new_category($product_category,0,$this->data['product_category']);
+            $type_dress = $this->product_category_model->get_by_type(0,'asc');
+            $type_accessories = $this->product_category_model->get_by_type(1,'asc');
+            $this->build_new_category($type_dress,0,$this->data['type_dress']);
+            $this->build_new_category($type_accessories,0,$this->data['type_accessories']);
             if($this->input->post()){
                 $this->load->library('form_validation');
                 if($this->check_all_file_img($_FILES) === false){
@@ -138,7 +140,7 @@ class Product extends Admin_Controller{
                 $parent_title = $this->build_parent_title($detail['product_category_id']);
                 $detail['parent_title'] = $parent_title;
                 $this->data['detail'] = $detail;
-                $this->data['collection'] = build_language('collection',  $this->collection_model->get_by_id($detail['collection_id'], array('title')), array('title'), $this->page_languages);
+                $this->data['collection'] = $this->collection_model->get_by_id($detail['collection_id'], array('title'),'vi');
                 $this->data['templates'] = array_slice(json_decode($templates['data'],true), $this->data['number_field']);
                 $this->data['templates_all'] = json_decode($templates['data'],true);
                 $this->render('admin/product/detail_product_view');
@@ -193,7 +195,6 @@ class Product extends Admin_Controller{
 
     public function edit($id){
         if($id &&  is_numeric($id) && ($id > 0)){
-            $product_category = $this->product_category_model->get_by_parent_id(null,'asc');
             $this->load->helper('form');
             if($this->product_model->find_rows(array('id' => $id,'is_deleted' => 0)) == 0){
                 $this->session->set_flashdata('message_error',MESSAGE_ISSET_ERROR);
@@ -207,7 +208,11 @@ class Product extends Admin_Controller{
                 $this->data['templates'] = array_slice($this->data['templates_all'],$this->data['number_field']);
             }
             $subs = $this->product_model->get_by_parent_id($id, 'asc');
-            $this->build_new_category($product_category,0,$this->data['product_category'],$subs['product_category_id']);
+
+            $type_dress = $this->product_category_model->get_by_type(0,'asc');
+            $type_accessories = $this->product_category_model->get_by_type(1,'asc');
+            $this->build_new_category($type_dress,0,$this->data['type_dress']);
+            $this->build_new_category($type_accessories,0,$this->data['type_accessories']);
             $this->data['detail'] = build_language($this->data['controller'], $detail, array('title','description','content', 'data_lang'), $this->page_languages);
             $this->data['collection'] = $this->collection_model->get_by_parent_id(null,'asc');
             if($this->input->post()){

@@ -91,6 +91,20 @@ class Product_category_model extends MY_Model{
 
         return $result = $this->db->get()->result_array();
     }
+    public function get_by_type($type, $order = 'desc',$lang = ''){
+        $this->db->select($this->table .'.*, '. $this->table_lang .'.title');
+        $this->db->from($this->table);
+        $this->db->join($this->table_lang, $this->table_lang .'.'. $this->table .'_id = '. $this->table .'.id');
+        $this->db->where($this->table .'.is_deleted', 0);
+        if($lang != ''){
+            $this->db->where($this->table_lang .'.language', $lang);
+        }
+        $this->db->where($this->table .'.type', $type);
+        $this->db->group_by($this->table_lang .'.'. $this->table .'_id');
+        $this->db->order_by($this->table .".sort", $order);
+
+        return $result = $this->db->get()->result_array();
+    }
     public function get_all($select = array(), $lang = '',$order="asc") {
         $this->db->query('SET SESSION group_concat_max_len = 10000000');
         $this->db->select($this->table .'.*');

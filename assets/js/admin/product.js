@@ -285,9 +285,18 @@ function check_rent_sale(ev){
     }
 }
 if(document.querySelector('#select_templates').value == '1'){
-    $('.showdate').css('display','none')
+    $('.showdate').css('display','none');
 }else{
-    $('.showdate').css('display','block')
+    $('.showdate').css('display','block');
+}
+if(window.location.pathname.indexOf("/product/create") != '-1'){
+    if(document.querySelector('#select_templates').value == '1'){
+        document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_accessories').value;
+    }else{
+        document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_dress').value;
+    }
+}else{
+    document.querySelector(`[name="parent_id_shared"] option[value="${document.querySelector('#product_category_id_selected').value}"]`).setAttribute('selected','');
 }
 function check_type_product(ev){
     document.querySelector('#collection_id option').setAttribute('selected','');
@@ -295,7 +304,9 @@ function check_type_product(ev){
         $('.showdate').css('display','none')
         $('#datepicker').val('');
         $('#datepicker').datepicker('setDate', null);
+        document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_accessories').value;
     }else{
-        $('.showdate').css('display','block')
+        $('.showdate').css('display','block');
+        document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_dress').value;
     }
 }

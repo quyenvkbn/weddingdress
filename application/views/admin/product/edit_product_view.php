@@ -167,14 +167,20 @@
                                             ?>
                                             <span class="help-block hidden"><?php echo $templates_all['slug_shared']['required']; ?></span>
                                         </div>
-
+                                        <div class="form-group col-xs-12" >
+                                            <label class="control-label">Kiểu danh mục sản phẩm</label>
+                                            <select name="type" id="select_templates" class="form-control" required="required" onchange="check_type_product(this)">
+                                                <option value="0"<?php echo ($detail['type'] == 0)?' selected': ''; ?>>Váy</option>
+                                                <option value="1"<?php echo ($detail['type'] == 1)?' selected': ''; ?>>Phụ kiện</option>
+                                            </select>
+                                        </div>
                                         <div class="form-group col-xs-12 required">
                                             <?php
                                             echo form_label('Danh mục', 'select');
                                             ?>
-                                            <select name="parent_id_shared" class="form-control" onchange="ajax_trademark(this)">
-                                                <option value="">Chọn danh mục</option>
-                                                <?php echo $product_category; ?>
+                                            <select name="parent_id_shared" class="form-control">
+                                                <option value="">Click để chọn</option>
+                                                <?php echo ($detail['type'] == 0)? $type_dress : $type_accessories; ?>
                                             </select>
                                             <span class="help-block hidden"><?php echo $templates_all['parent_id_shared']['required']; ?></span>
                                         </div>
@@ -234,13 +240,6 @@
                                         <h4 class="box-title">Chi tiết sản phẩm</h4>
                                         <div class="row">
                                             <span><?php echo $this->session->flashdata('message'); ?></span>
-                                        </div>
-                                        <div class="col-md-12" style="margin-bottom: 10px;">
-                                            <label class="control-label">Kiểu sản phẩm</label>
-                                            <select name="type" id="select_templates" class="form-control" required="required"  onchange="check_type_product(this)">
-                                                <option value="0" <?php echo ($detail['type'] == 0)? 'selected' : '' ?>>Váy cưới</option>
-                                                <option value="1" <?php echo ($detail['type'] == 1)? 'selected' : '' ?>>Phụ kiện</option>
-                                            </select>
                                         </div>
                                         <div class="col-md-12 showdate" style="margin-bottom: 10px;">
                                             <label class="control-label">Bộ sưu tập</label>
@@ -382,6 +381,10 @@
         </div>
     </section>
 </div>
+
+<input type="hidden" id="type_dress" value='<option value="">Click để chọn</option><?php echo $type_dress; ?>'>
+<input type="hidden" id="type_accessories" value='<option value="">Click để chọn</option><?php echo $type_accessories; ?>'>
+<input type="hidden" id="product_category_id_selected" value='<?php echo $detail['product_category_id']; ?>'>
 
 <script src="<?php echo site_url('assets/lib/') ?>DatePickerX/DatePickerX.min.js"></script>
 <!-- <script src="<?php echo site_url('assets/js/admin/') ?>showmodalimg.js"></script> -->
