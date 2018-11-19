@@ -13,19 +13,24 @@ class Product extends Public_Controller {
         $this->data['number_field'] = 6;
     }
     public function index(){
-        echo 1;die;
+        $this->render('list_products_view');
     }
-    public function detail($slug){
-        $detail = $this->product_model->get_by_slug($slug, array('title', 'description', 'content','data_lang'),'vi');
-        $detail['product_data_lang'] = json_decode($detail['product_data_lang'],true);
-        $detail['metakeywords'] = $detail['product_data_lang']['tu_khoa_meta'];
-        $detail['metadescription'] = $detail['product_data_lang']['mo_ta_meta'];
-        $detail['collection'] = json_decode($detail['collection'],true);
-        $detail['common'] = json_decode($detail['common'],true);
-        $detail['date'] = explode(',', $detail['date']);
-        $this->data['detail'] = $detail;
+
+    public function detail(){
         $this->render('detail_product_view');
     }
+
+//    public function detail($slug){
+//        $detail = $this->product_model->get_by_slug($slug, array('title', 'description', 'content','data_lang'),'vi');
+//        $detail['product_data_lang'] = json_decode($detail['product_data_lang'],true);
+//        $detail['metakeywords'] = $detail['product_data_lang']['tu_khoa_meta'];
+//        $detail['metadescription'] = $detail['product_data_lang']['mo_ta_meta'];
+//        $detail['collection'] = json_decode($detail['collection'],true);
+//        $detail['common'] = json_decode($detail['common'],true);
+//        $detail['date'] = explode(',', $detail['date']);
+//        $this->data['detail'] = $detail;
+//        $this->render('detail_product_view');
+//    }
     public function category($slug){
         // if($this->product_category_model->find_rows(array('slug' => $slug,'is_deleted' => 0,'is_activated' => 0)) != 0){
         //     $detail = $this->product_category_model->get_by_slug_lang($slug,array(),$this->data['lang']);

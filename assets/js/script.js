@@ -6,15 +6,13 @@ $(document).ready(function(){
     
     $('#btn-nav-expand').click(function(){
         if(navStatus == 0){
-            $('header .nav-main').addClass('primary');
-            $('.nav-expand').addClass('active');
+            $('header .nav-item.nav-main ul').addClass('active');
             $('#btn-nav-expand').addClass('active');
             navStatus = 1;
         }
         
         else{
-            $('header .nav-main').removeClass('primary');
-            $('.nav-expand').removeClass('active');
+            $('header .nav-item.nav-main ul').removeClass('active');
             $('#btn-nav-expand').removeClass('active');
             navStatus = 0;
         }
