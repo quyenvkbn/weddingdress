@@ -1176,6 +1176,45 @@ footer .container-fluid.bottom {
     -o-transition: all ease-in-out 300ms;
     transition: all ease-in-out 300ms; }
 
+.modal#dressBooking .modal-dialog .modal-content .modal-header {
+  background-color: #FFD0D0; }
+  .modal#dressBooking .modal-dialog .modal-content .modal-header h5 {
+    color: #fff; }
+  .modal#dressBooking .modal-dialog .modal-content .modal-header button {
+    color: #fff; }
+.modal#dressBooking .modal-dialog .modal-content .modal-body .row .left img {
+  width: 100%; }
+.modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content {
+  display: flex;
+  flex-direction: column; }
+  .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item {
+    width: 100%;
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #999; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item:last-of-type {
+      border-bottom: none; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item h5 {
+      font-family: "Roboto", sans-serif; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item table {
+      margin-top: 30px; }
+      .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item table td {
+        padding: 7px 0; }
+        .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item table td span {
+          font-family: "Roboto", sans-serif; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item.overall h4 {
+      margin-bottom: 30px; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item.overall .code {
+      font-family: "Roboto", sans-serif;
+      color: #999; }
+    .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item.overall table {
+      margin-top: 30px; }
+      .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item.overall table span {
+        color: #666; }
+        .modal#dressBooking .modal-dialog .modal-content .modal-body .row .right .content .item.overall table span small {
+          color: #999;
+          text-decoration: line-through; }
+
 @media (max-width: 992px) and (min-width: 768px) {
   #products .content .row .left {
     order: 2; }

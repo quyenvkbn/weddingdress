@@ -114,7 +114,7 @@
 
 					<div class="desc item">
 						<h5>
-							Detail Infomation
+							Description
 						</h5>
 
 						<p class="paragraph">
@@ -122,7 +122,7 @@
 							<a href="javascript:void(0)">Read more...</a>
 						</p>
 
-						<button class="btn btn-primary" type="button">
+						<button class="btn btn-primary" type="button" data-toggle="modal" data-target="#dressBooking">
 							<i class="fas fa-check-circle"></i> Booking Now
 						</button>
 					</div>
@@ -180,6 +180,178 @@
 		</div>
 	</div>
 </section>
+
+<div class="modal fade" id="dressBooking" tabindex="-1" role="dialog" aria-labelledby="dressBookingLabel" aria-hidden="true">
+	<div class="modal-dialog modal-lg" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="dressBookingLabel">Booking Dress name</h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+                <?php
+                echo form_open_multipart('', array('class' => 'form-horizontal'));
+                ?>
+
+				<div class="row">
+					<div class="left col-xs-12 col-md-6">
+						<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw5.jpg" alt="" />
+					</div>
+					<div class="right col-xs-12 col-md-6">
+						<div class="content">
+							<div class="overall item">
+								<h4>
+									Name of Product: White by Vera Wang Floral Illusion Wedding Dress
+								</h4>
+								<h5>
+									Category: New Arrivals
+								</h5>
+								<span class="code">Code: CDG310</span>
+
+								<table class="table table-borderless">
+									<tr>
+										<td>Rent Cost</td>
+										<td>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="priceRadio" id="priceRadio1" value="option1" checked>
+												<label class="form-check-label" for="priceRadio1">
+													<span class="price-rent">
+														999.999.999 vnd <small>999.999.000 vnd</small>
+													</span>
+												</label>
+											</div>
+										</td>
+									</tr>
+									<tr>
+										<td>Price</td>
+										<td>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="priceRadio" id="priceRadio2" value="option2">
+												<label class="form-check-label" for="priceRadio2">
+													<span class="price-buy">
+														999.999.999 vnd <small>999.999.000 vnd</small>
+													</span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+							<div class="detail item">
+								<h5>
+									Detail Infomation
+								</h5>
+
+								<table class="table table-borderless">
+									<tr>
+										<td>Color</td>
+										<td colspan="2">
+											<span>White</span>
+										</td>
+									</tr>
+									<tr>
+										<td>Size</td>
+										<td>
+
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="sizeRadio" id="sizeRadio1" value="option1" checked>
+												<label class="form-check-label" for="sizeRadio1">
+													<span>S</span>
+												</label>
+											</div>
+
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="sizeRadio" id="sizeRadio2" value="option2" >
+												<label class="form-check-label" for="sizeRadio2">
+													<span>M</span>
+												</label>
+											</div>
+
+											<div class="form-check form-check-inline">
+												<input class="form-check-input" type="radio" name="sizeRadio" id="sizeRadio3" value="option3" >
+												<label class="form-check-label" for="sizeRadio3">
+													<span>L</span>
+												</label>
+											</div>
+										</td>
+									</tr>
+								</table>
+							</div>
+
+							<div class="departure item">
+								<h5>
+									Departure Day and Booking Store
+								</h5>
+
+								<form>
+									<div class="form-group">
+										<input type="date" class="form-control" id="booking_date" placeholder="Departure Day">
+									</div>
+
+									<div class="form-group">
+										<select class="form-control">
+											<option>--- Select a store to booking ---</option>
+											<option>Store 1</option>
+											<option>Store 2</option>
+											<option>Store 3</option>
+										</select>
+									</div>
+								</form>
+							</div>
+
+							<div class="info item">
+								<h5>
+									Information
+								</h5>
+
+								<div class="row">
+									<div class="form-group col-xs-12 col-md-12">
+                                        <?php
+                                        //echo form_label('Họ tên (*)', 'contact_name');
+                                        echo form_error('contact_name');
+                                        echo form_input('contact_name', set_value('contact_name'), 'class="form-control" id="contact_name" placeholder="Full Name" ');
+                                        ?>
+									</div>
+
+									<div class="form-group col-xs-12 col-md-12">
+                                        <?php
+                                        //echo form_label('Email (*)', 'contact_mail');
+                                        echo form_error('contact_mail');
+                                        echo form_input('contact_mail', set_value('contact_mail'), 'class="form-control" id="contact_mail" placeholder="Email" ');
+                                        ?>
+									</div>
+									<div class="form-group col-xs-12 col-md-12">
+                                        <?php
+                                        //echo form_label('Số điện thoại (*)', 'contact_phone');
+                                        echo form_error('contact_phone');
+                                        echo form_input('contact_phone', set_value('contact_phone'), 'class="form-control" id="contact_phone" placeholder="Phone Number (optional)" ');
+                                        ?>
+									</div>
+
+									<div class="form-group col-xs-12 col-md-12">
+                                        <?php
+                                        //echo form_label('Nội dung', 'contact_message');
+                                        echo form_error('contact_message');
+                                        echo form_textarea('contact_message', set_value('contact_message'), 'class="form-control" id="contact_message" placeholder="Message to Us..." ');
+                                        ?>
+									</div>
+								</div>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+                <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary"'); ?>
+			</div>
+
+            <?php echo form_close(); ?>
+		</div>
+	</div>
+</div>
 
 <!-- wow JS -->
 <script src="<?php echo site_url('node_modules/wow.js/') ?>dist/wow.min.js"></script>

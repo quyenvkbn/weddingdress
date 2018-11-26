@@ -339,6 +339,74 @@
                                 @include scale(1.1, 1.1)
                                 @include transition(300ms)
 
+.modal
+    &#dressBooking
+        .modal-dialog
+            .modal-content
+                .modal-header
+                    background-color: $primary
+
+                    h5
+                        color: #fff
+
+                    button
+                        color: #fff
+
+                .modal-body
+                    .row
+                        .left
+                            img
+                                width: 100%
+
+                        .right
+                            .content
+                                display: flex
+                                flex-direction: column
+
+                                .item
+                                    width: 100%
+
+                                    padding-top: 15px
+                                    padding-bottom: 15px
+
+                                    border-bottom: 1px solid $gray-light
+
+                                    &:last-of-type
+                                        border-bottom: none
+
+                                    h5
+                                        font-family: "Roboto", sans-serif
+
+                                    table
+                                        margin-top: 30px
+
+                                        td
+                                            padding: 7px 0
+
+                                            span
+                                                font-family: "Roboto", sans-serif
+
+                                    &.overall
+                                        h4
+                                            margin-bottom: 30px
+
+                                        .code
+                                            font-family: "Roboto", sans-serif
+                                            color: $gray-light
+
+                                        table
+                                            margin-top: 30px
+
+                                            span
+                                                color: $gray
+
+                                                small
+                                                    color: $gray-light
+                                                    text-decoration: line-through
+
+
+
+
 @media (max-width: 992px) and (min-width: 768px)
     #products
         .content
