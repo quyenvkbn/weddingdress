@@ -42,6 +42,25 @@ header
                             &:hover
                                 text-decoration: none
 
+                        &.li-lang
+                            display: none
+
+            &.nav-lang
+                ul
+                    list-style: none
+
+                    margin-bottom: 0
+
+                    li
+                        display: inline-block
+
+                        a
+                            color: $gray
+
+                        &:first-of-type
+                            padding-right: 7px
+
+                            border-right: 1px solid $gray
 
     &.active
         padding: 15px 60px
@@ -61,6 +80,15 @@ header
                         a
                             color: #fff
 
+            &.nav-lang
+                ul
+                    li
+                        a
+                            color: #fff
+
+                        &:first-of-type
+                            border-right: 1px solid #fff
+
             &.nav-btn
                 .btn
                     border: 1px solid #fff
@@ -74,6 +102,15 @@ header
                             a
                                 color: #fff
 
+                &.nav-lang
+                    ul
+                        li
+                            a
+                                color: #fff
+
+                            &:first-of-type
+                                border-right: 1px solid #fff
+
 @media (max-width: 992px)
     header
         padding: 30px
@@ -81,6 +118,11 @@ header
         nav
             .nav-item
                 &.nav-main
+                    ul
+                        li
+                            &.li-lang
+                                display: block
+
                     #expand-nav
                         #btn-nav-expand
 
@@ -165,17 +207,10 @@ header
                             li
                                 display: list-item
 
-                &.nav-lang
-                    ul
-                        list-style: none
-
-                        li
-                            display: inline-block
-
-                            a
-                                color: $gray
-
                 &.nav-btn
+                    display: none
+
+                &.nav-lang
                     display: none
 
         &.light

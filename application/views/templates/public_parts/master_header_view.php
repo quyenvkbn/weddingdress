@@ -47,7 +47,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<ul>
 				<li>
-					<a href="<?php echo base_url('') ?>">
+					<a href="<?php echo base_url('about/') ?>">
 						About Us
 					</a>
 				</li>
@@ -77,16 +77,28 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('') ?>">
+					<a href="<?php echo base_url('blogs/') ?>">
 						Promotion
 					</a>
 				</li>
 
+				<li class="li-lang">
+					<a href="<?php echo base_url('') ?>">
+						En
+					</a>
+					|
+					<a href="<?php echo base_url('') ?>">
+						Vi
+					</a>
+				</li>
+
+				<!--
 				<li>
 					<a href="<?php echo base_url('') ?>">
 						Appointment
 					</a>
 				</li>
+				-->
 			</ul>
 		</div>
 
@@ -106,8 +118,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		</div>
 
 		<div class="nav-btn nav-item">
-			<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">
-				Booking Now
+			<a href="<?php echo base_url('booking/') ?>" class="btn btn-primary" role="button">
+				Booking an Appointment
 			</a>
 		</div>
 

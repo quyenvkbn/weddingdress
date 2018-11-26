@@ -66,6 +66,18 @@ header {
           font-weight: 700; }
           header nav .nav-item.nav-main ul li a:hover {
             text-decoration: none; }
+        header nav .nav-item.nav-main ul li.li-lang {
+          display: none; }
+    header nav .nav-item.nav-lang ul {
+      list-style: none;
+      margin-bottom: 0; }
+      header nav .nav-item.nav-lang ul li {
+        display: inline-block; }
+        header nav .nav-item.nav-lang ul li a {
+          color: #666; }
+        header nav .nav-item.nav-lang ul li:first-of-type {
+          padding-right: 7px;
+          border-right: 1px solid #666; }
   header.active {
     padding: 15px 60px;
     background-color: #FFD0D0;
@@ -78,14 +90,24 @@ header {
       color: #fff; }
     header.active .nav-item.nav-main ul li a {
       color: #fff; }
+    header.active .nav-item.nav-lang ul li a {
+      color: #fff; }
+    header.active .nav-item.nav-lang ul li:first-of-type {
+      border-right: 1px solid #fff; }
     header.active .nav-item.nav-btn .btn {
       border: 1px solid #fff; }
   header.light nav .nav-item.nav-main ul li a {
     color: #fff; }
+  header.light nav .nav-item.nav-lang ul li a {
+    color: #fff; }
+  header.light nav .nav-item.nav-lang ul li:first-of-type {
+    border-right: 1px solid #fff; }
 
 @media (max-width: 992px) {
   header {
     padding: 30px; }
+    header nav .nav-item.nav-main ul li.li-lang {
+      display: block; }
     header nav .nav-item.nav-main #expand-nav #btn-nav-expand {
       -webkit-transition: all ease-in-out 300ms;
       -moz-transition: all ease-in-out 300ms;
@@ -163,13 +185,9 @@ header {
         transition: all ease-in-out 300ms; }
         header nav .nav-item.nav-main ul.active li {
           display: list-item; }
-    header nav .nav-item.nav-lang ul {
-      list-style: none; }
-      header nav .nav-item.nav-lang ul li {
-        display: inline-block; }
-        header nav .nav-item.nav-lang ul li a {
-          color: #666; }
     header nav .nav-item.nav-btn {
+      display: none; }
+    header nav .nav-item.nav-lang {
       display: none; }
     header.light nav .nav-item.nav-main ul li a {
       color: #666; }
@@ -1297,5 +1315,119 @@ footer .container-fluid.bottom {
 
   #detail-blog .container {
     padding-top: 10vh; } }
+#booking {
+  padding-top: 15vh; }
+  #booking .container#desc .heading {
+    padding-bottom: 30px; }
+  #booking .container#list-contact {
+    margin-bottom: 50px; }
+    #booking .container#list-contact .row .item {
+      margin-bottom: 30px; }
+      #booking .container#list-contact .row .item .inner {
+        border: 1px solid #FFD0D0;
+        padding: 15px; }
+        #booking .container#list-contact .row .item .inner h3 {
+          color: #FFD0D0; }
+        #booking .container#list-contact .row .item .inner .table-responsive table tr td {
+          padding-left: 0;
+          color: #999; }
+          #booking .container#list-contact .row .item .inner .table-responsive table tr td a {
+            color: #FFD0D0;
+            font-family: "Roboto", sans-serif; }
+            #booking .container#list-contact .row .item .inner .table-responsive table tr td a:hover {
+              color: #ED9191; }
+  #booking .container#form-contact .row .left h1 {
+    padding-bottom: 50px; }
+  #booking .container#form-contact .row .left p {
+    color: #999; }
+  #booking .container-fluid#map {
+    padding-top: 30px;
+    padding-bottom: 30px; }
+    #booking .container-fluid#map iframe {
+      width: 100% !important;
+      height: 50vh !important; }
+  #booking .container-fluid.connection {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 30px; }
+    #booking .container-fluid.connection h1 {
+      font-weight: 700;
+      font-size: 2.25rem;
+      color: #666;
+      margin-bottom: 15px; }
+    #booking .container-fluid.connection .line {
+      width: 500px;
+      height: 2px;
+      margin: 0 auto 15px;
+      background-color: #999; }
+    #booking .container-fluid.connection ul {
+      padding-left: 0;
+      list-style: none; }
+      #booking .container-fluid.connection ul li {
+        display: inline-block;
+        margin: 0 7px;
+        font-size: 1.25rem; }
+        #booking .container-fluid.connection ul li a {
+          color: #666; }
+          #booking .container-fluid.connection ul li a:hover {
+            color: #FFD0D0; }
+
+#about {
+  padding-top: 15vh; }
+  #about .container-fluid#desc {
+    background-color: #f3f3f3;
+    padding-top: 30px;
+    padding-bottom: 30px; }
+    #about .container-fluid#desc .container .row .left img {
+      width: 100%; }
+    #about .container-fluid#desc .container .row .right p {
+      color: #999; }
+  #about .container#why-us {
+    padding-top: 50px;
+    padding-bottom: 50px; }
+    #about .container#why-us .heading {
+      text-align: center;
+      padding-bottom: 30px; }
+    #about .container#why-us .body .row .item {
+      margin-bottom: 30px; }
+      #about .container#why-us .body .row .item .inner {
+        padding: 15px;
+        -webkit-transition: all ease-in-out 300ms;
+        -moz-transition: all ease-in-out 300ms;
+        -ms-transition: all ease-in-out 300ms;
+        -o-transition: all ease-in-out 300ms;
+        transition: all ease-in-out 300ms; }
+        #about .container#why-us .body .row .item .inner h3 {
+          margin-bottom: 15px;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
+        #about .container#why-us .body .row .item .inner p {
+          color: #999;
+          margin-bottom: 30px;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
+        #about .container#why-us .body .row .item .inner .mask {
+          width: 100%;
+          height: 230px; }
+      #about .container#why-us .body .row .item:hover .inner {
+        background-color: #FFD0D0;
+        -webkit-transition: all ease-in-out 300ms;
+        -moz-transition: all ease-in-out 300ms;
+        -ms-transition: all ease-in-out 300ms;
+        -o-transition: all ease-in-out 300ms;
+        transition: all ease-in-out 300ms; }
+        #about .container#why-us .body .row .item:hover .inner h3, #about .container#why-us .body .row .item:hover .inner p {
+          color: #fff;
+          -webkit-transition: all ease-in-out 300ms;
+          -moz-transition: all ease-in-out 300ms;
+          -ms-transition: all ease-in-out 300ms;
+          -o-transition: all ease-in-out 300ms;
+          transition: all ease-in-out 300ms; }
 
 /*# sourceMappingURL=style.css.map */

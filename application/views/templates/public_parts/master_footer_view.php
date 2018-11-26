@@ -179,7 +179,7 @@
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
+							<a href="<?php echo base_url('booking/') ?>">
 								Contact Us
 							</a>
 						</li>
