@@ -1,290 +1,207 @@
+<!-- Animate CSS -->
+<link rel="stylesheet" href="<?php echo site_url('node_modules/animate.css/') ?>animate.min.css">
+
 <section id="products">
-    <div class="container">
-        <div class="row">
-            <div class="left col-xs-12 col-sm-12 col-md-3 col-lg-3">
-                <h2 class="title-md">
-					Speakers
-					<br>
-					<?php echo count($result) ?>
-				</h2>
+	<div class="container-fluid ads-short">
+		<h5>Sample sale bridal styles starting at $199</h5>
+		<a href="<?php ?>" class="btn btn-light" role="button">
+			View Detail
+		</a>
+	</div>
 
-                <div class="accordion" id="accordion">
+	<div class="container-fluid ads-md" style="background-image: url('https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80');">
+		<div class="overlay">
+			<div class="content">
+				<h3>Sample sale bridal styles starting at $199</h3>
+				<a href="<?php ?>" class="btn btn-outline" role="button">
+					View Detail
+				</a>
+			</div>
+		</div>
+	</div>
 
-                    <!-- Collapse 1: Production -->
-                    <div class="card">
-                        <div class="card-header" id="headingOne">
-                            <h3 class="title-sm">
-                                <a role="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                                    Production
-                                </a>
-                            </h3>
-                        </div>
+	<div class="container content">
+		<div class="row">
+			<div class="left col-xs-12 col-md-12 col-lg-3">
+				<div class="accordion" id="sideBar">
+					<div class="card">
+						<div class="card-header" id="headingOne">
+							<h5 class="mb-0">
+								<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+									Explore
+								</button>
+							</h5>
+						</div>
 
-                        <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                            <div class="card-body">
-                                <?php
-                                $production = array(
-                                    'Bose' , 'Marshall' , 'Q Acoutics' , 'JBL' , 'NHT'
-                                )
-                                ?>
-                                <?php for ($i = 0; $i < count($production); $i++) { ?>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                    <label class="form-check-label" for="defaultCheck1">
-                                        <?php echo $production[$i] ?>
-                                    </label>
-                                </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collapse 2: Fit -->
-                    <div class="card">
-                        <div class="card-header" id="headingTwo">
-                            <h3 class="title-sm">
-                                <a role="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true" aria-controls="collapseOne">
-                                    Fit
-                                </a>
-                            </h3>
-                        </div>
-                        <div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#accordion">
-                            <div class="card-body">
-                                <?php
-                                $fit = array(
-                                    'In-ear' , 'Over-ear'
-                                )
-                                ?>
-                                <?php for ($i = 0; $i < count($fit); $i++) { ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            <?php echo $fit[$i] ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collapse 3: Features -->
-                    <div class="card">
-                        <div class="card-header" id="headingThree">
-                            <h3 class="title-sm">
-                                <a role="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="true" aria-controls="collapseOne">
-                                    Features
-                                </a>
-                            </h3>
-                        </div>
-                        <div id="collapseThree" class="collapse show" aria-labelledby="headingThree" data-parent="#accordion">
-                            <div class="card-body">
-                                <?php
-                                $features = array(
-                                    'Noise cancelling' , 'Wireless' , 'Sport' , 'Aviation' , 'Heart rate sensor'
-                                )
-                                ?>
-                                <?php for ($i = 0; $i < count($features); $i++) { ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            <?php echo $features[$i] ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collapse 4: Price -->
-                    <div class="card">
-                        <div class="card-header" id="headingFour">
-                            <h3 class="title-sm">
-                                <a role="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseOne">
-                                    Price
-                                </a>
-                            </h3>
-                        </div>
-                        <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordion">
-                            <div class="card-body">
-                                <?php
-                                $price = array(
-                                    '0-$200' , '$201 - $500' , '$501 - $1000' , '$1000+'
-                                )
-                                ?>
-                                <?php for ($i = 0; $i < count($price); $i++) { ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            <?php echo $price[$i] ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Collapse 4: Sort by -->
-                    <div class="card">
-                        <div class="card-header" id="headingFive">
-                            <h3 class="title-sm">
-                                <a role="button" data-toggle="collapse" data-target="#collapseFive" aria-expanded="true" aria-controls="collapseOne">
-                                    Sort by
-                                </a>
-                            </h3>
-                        </div>
-                        <div id="collapseFive" class="collapse show" aria-labelledby="headingFive" data-parent="#accordion">
-                            <div class="card-body">
-                                <?php
-                                $sortby = array(
-                                    'Highest Rated' , 'Price (Low > High)' , 'Price (high > Low)'
-                                )
-                                ?>
-                                <?php for ($i = 0; $i < count($sortby); $i++) { ?>
-                                    <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" value="" id="defaultCheck1">
-                                        <label class="form-check-label" for="defaultCheck1">
-                                            <?php echo $sortby[$i] ?>
-                                        </label>
-                                    </div>
-                                <?php } ?>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-            </div>
-
-            <div class="right col-xs-12 col-sm-12 col-md-9 col-lg-9">
-                <div class="banner">
-                    <img src="<?php echo site_url('assets/img/')?>banner-discount.jpg" alt="banner discount 5%">
-                </div>
-
-                <div id="list">
-					<div class="row">
-
-                        <?php foreach ($result as $key => $value): ?>
-							<div class="col-xs-12 col-lg-6 item">
-								<div class="inner">
-									<div class="mask">
-										<img src="<?php echo site_url('assets/img/product/') . $value['image'] ?>" alt="image product <?php echo $value['title'] ?>">
+						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#sideBar">
+							<div class="card-body">
+								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+							</div>
+						</div>
+					</div>
+					<div class="card">
+						<div class="card-header" id="headingTwo">
+							<h5 class="mb-0">
+								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+									Filter by
+								</button>
+							</h5>
+						</div>
+						<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#sideBar">
+							<div class="card-body">
+								<div class="item">
+									<div class="item-head">
+										Rent Cost
 									</div>
-
-									<div class="item-info">
-										<h4 class="subtitle-sm"><?php echo $value['subtitle'] ?></h4>
-										<h3 class="title-sm text-wrapper"><?php echo $value['title'] ?></h3>
-										<h3 class="title-sm">
-											$<?php echo $value['price'] ?>
-
-											<span class="featured">
-													<?php
-                                                    if ($value['bluetooth'] == 1){
-                                                        echo '<i class="fab fa-bluetooth-b"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['battery'] == 1){
-                                                        echo '<i class="fas fa-battery-full"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['waterproof'] == 1){
-                                                        echo '<i class="fas fa-tint"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['heartbeat'] == 1){
-                                                        echo '<i class="fas fa-heartbeat"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-												</span>
-										</h3>
+									<div class="item-body">
+										<?php for ($i = 0; $i < 4; $i++) { ?>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="Radios1" id="Radios1-<?php echo $i ?>" value="option1-<?php echo $i ?>" <?php echo ($i == 0)? 'checked' : '' ?>>
+												<label class="form-check-label" for="Radios<?php echo $i ?>">
+													0 - 999.999.999 vnd
+												</label>
+											</div>
+										<?php } ?>
 									</div>
+								</div>
 
-									<div class="overlay">
-										<h4 class="subtitle-sm"><?php echo $value['subtitle'] ?></h4>
-										<h3 class="title-sm text-wrapper"><?php echo $value['title'] ?></h3>
-										<h3 class="title-sm">
-											$<?php echo $value['price'] ?>
-
-											<span class="featured">
-													<?php
-                                                    if ($value['bluetooth'] == 1){
-                                                        echo '<i class="fab fa-bluetooth-b"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['battery'] == 1){
-                                                        echo '<i class="fas fa-battery-full"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['waterproof'] == 1){
-                                                        echo '<i class="fas fa-tint"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-
-                                                    <?php
-                                                    if ($value['heartbeat'] == 1){
-                                                        echo '<i class="fas fa-heartbeat"></i>';
-                                                    } else{
-                                                        echo '';
-                                                    }
-                                                    ?>
-												</span>
-										</h3>
-										<p class="paragraph text-wrapper"><?php echo $value['description'] ?></p>
+								<div class="item">
+									<div class="item-head">
+										Price
 									</div>
+									<div class="item-body">
+                                        <?php for ($i = 0; $i < 4; $i++) { ?>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="Radios2" id="Radios2-<?php echo $i ?>" value="option2-<?php echo $i ?>" <?php echo ($i == 0)? 'checked' : '' ?>>
+												<label class="form-check-label" for="Radios<?php echo $i ?>">
+													0 - 999.999.999 vnd
+												</label>
+											</div>
+                                        <?php } ?>
+									</div>
+								</div>
 
-									<div class="buttons">
-										<button role="button" class="btn btn-light add-to-cart" data-id="<?php echo $value['id'] ?>" data-quantity="1" data-price="<?php echo $value['price'] ?>" data-product='<?php echo json_encode($value) ?>'>
-											Add to Cart
-										</button>
-										<a href="<?php echo base_url('products/detail/') . $value['id'] ?>" role="button" class="btn btn-link">
-											See Detail
-										</a>
+								<div class="item">
+									<div class="item-head">
+										Silhouette
+									</div>
+									<div class="item-body">
+                                        <?php for ($i = 0; $i < 4; $i++) { ?>
+											<div class="form-check">
+												<input class="form-check-input" type="radio" name="Radios3" id="Radios3-<?php echo $i ?>" value="option3-<?php echo $i ?>" <?php echo ($i == 0)? 'checked' : '' ?>>
+												<label class="form-check-label" for="Radios<?php echo $i ?>">
+													Ballgown (30)
+												</label>
+											</div>
+                                        <?php } ?>
+									</div>
+								</div>
+
+								<div class="item">
+									<div class="item-head">
+										Availability
+									</div>
+									<div class="item-body">
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="Radios4" id="Radios4-1" value="option4-1" checked>
+											<label class="form-check-label" for="Radios4">
+												In stock
+											</label>
+										</div>
+										<div class="form-check">
+											<input class="form-check-input" type="radio" name="Radios4" id="Radios4-2" value="option4-2">
+											<label class="form-check-label" for="Radios4">
+												Out of Stock
+											</label>
+										</div>
 									</div>
 								</div>
 							</div>
-                        <?php endforeach; ?>
+						</div>
 					</div>
+				</div>
+			</div>
 
-					<nav aria-label="Page navigation example">
-						<ul class="pagination justify-content-center">
-							<li class="page-item disabled">
-								<a class="page-link" href="#" tabindex="-1">Previous</a>
-							</li>
-							<li class="page-item"><a class="page-link" href="#">1</a></li>
-							<li class="page-item"><a class="page-link" href="#">2</a></li>
-							<li class="page-item"><a class="page-link" href="#">3</a></li>
-							<li class="page-item">
-								<a class="page-link" href="#">Next</a>
-							</li>
-						</ul>
-					</nav>
+			<div class="right col-xs-12 col-md-12 col-lg-9">
+				<div class="grid">
+					<div class="grid-sizer"></div>
+                    <?php for ($i = 0; $i < 8; $i++) { ?>
+						<div class="grid-item <?php echo ($i % 2 == 0)? 'grid-item-mt' : '' ?> wow fadeInUp" data-wow-delay="0.<?php echo $i ?>s">
+							<div class="image">
+								<div class="mask">
+									<a href="<?php echo base_url('product/detail/') ?>">
+										<img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/37390753_418398698672124_8871318781691953152_n.jpg?_nc_cat=103&_nc_ht=scontent.fsgn2-2.fna&oh=6beea61e6da7aaef01d3d28a1876ebe8&oe=5C7C7AC1" alt="image product">
+									</a>
+								</div>
 
-                </div>
-            </div>
-        </div>
-    </div>
+								<div class="name">
+									<h6>Name of Product Jessica</h6>
+								</div>
+							</div>
+
+							<div class="content">
+								<h4>
+									<a href="<?php echo base_url('product/detail/') ?>">
+										Appliqued Chantilly Lace Trumpet Wedding Dress
+									</a>
+								</h4>
+								<h6>Code: CDG310</h6>
+								<div class="price">
+                                    <span class="price-rent">
+                                        999.999.999 vnd <small>999.999.000 vnd</small>
+                                    </span>
+
+									<span class="price-buy">
+                                        999.999.999 vnd <small>999.999.000 vnd</small>
+                                    </span>
+								</div>
+							</div>
+						</div>
+                    <?php } ?>
+				</div>
+			</div>
+		</div>
+	</div>
+
 </section>
+
+<!-- Isotope JS -->
+<script src="<?php echo site_url('node_modules/isotope-layout/') ?>dist/isotope.pkgd.min.js"></script>
+<!-- imageLoaded JS -->
+<script src="<?php echo site_url('node_modules/imagesloaded/') ?>imagesloaded.pkgd.min.js"></script>
+<!-- wow JS -->
+<script src="<?php echo site_url('node_modules/wow.js/') ?>dist/wow.min.js"></script>
+
+<script>
+    $(document).ready(function(){
+        // init Isotope
+        var $grid = $('.grid').isotope({
+            itemSelector: '.grid-item',
+            percentPosition: true,
+            masonry: {
+                // use element for option
+                columnWidth: '.grid-sizer'
+            }
+        });
+        // layout Isotope after each image loads
+        $grid.imagesLoaded().progress( function() {
+            $grid.isotope('layout');
+        });
+
+        new WOW().init();
+
+		{
+		    // Sticky sideBar on Scroll
+
+			$(document).scroll(function(){
+			    if ($(window).scrollTop() > 200){
+			        $('#sideBar').addClass('active');
+				}
+
+                if ($(window).scrollTop() < 200){
+                    $('#sideBar').removeClass('active');
+                }
+			})
+		}
+    })
+</script>
