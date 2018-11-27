@@ -157,6 +157,7 @@ function submit_shared(ev){
     data.append('sale', document.querySelector('[name="sale"]').checked ? 'true' : 'false');
     data.append('rent', document.querySelector('[name="rent"]').checked ? 'true' : 'false');
     data.append('rent_sale', document.querySelector('[name="rent_sale"]').checked ? 'true' : 'false');
+    data.append('hot', document.querySelector('[name="hot"]').checked ? '1' : '0');
         
     var url = window.location.href;
     $.ajax({
@@ -286,6 +287,10 @@ function check_rent_sale(ev){
 }
 if(document.querySelector('#select_templates').value == '1'){
     $('.showdate').css('display','none');
+    document.querySelector('[name="kich_thuoc_cho_san_pham"]').parentElement.style.display = 'none';
+    document.querySelector('[name="kich_thuoc_cho_san_pham"]').value = '';
+    $('#hot input[type="checkbox"]').prop('checked',false);
+    document.querySelector('[name="hot"]').parentElement.style.display = 'none';
 }else{
     $('.showdate').css('display','block');
 }
@@ -305,8 +310,14 @@ function check_type_product(ev){
         $('#datepicker').val('');
         $('#datepicker').datepicker('setDate', null);
         document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_accessories').value;
+        document.querySelector('[name="kich_thuoc_cho_san_pham"]').parentElement.style.display = 'none';
+        document.querySelector('[name="kich_thuoc_cho_san_pham"]').value = '';
+        $('#hot input[type="checkbox"]').prop('checked',false);
+        document.querySelector('[name="hot"]').parentElement.style.display = 'none';
     }else{
         $('.showdate').css('display','block');
         document.querySelector('[name="parent_id_shared"]').innerHTML = document.querySelector('#type_dress').value;
+        document.querySelector('[name="kich_thuoc_cho_san_pham"]').parentElement.style.display = 'block';
+        document.querySelector('[name="hot"]').parentElement.style.display = 'block';
     }
 }

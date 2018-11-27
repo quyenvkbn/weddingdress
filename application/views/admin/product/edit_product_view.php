@@ -185,6 +185,15 @@
                                             <span class="help-block hidden"><?php echo $templates_all['parent_id_shared']['required']; ?></span>
                                         </div>
                                         <?php echo $a_language; ?>
+
+                                        <div class="form-group col-xs-12 " id="hot">
+                                            <div class="checkbox">
+                                                <label class="col-xs-12">
+                                                  <input type="checkbox" name="hot" <?php echo ($detail['hot'] == '1')? 'checked': '' ?>> Được khách hàng lựa chọn
+                                                </label>
+                                            </div>
+                                        </div>
+
                                         <div>
                                             <div class="form-group col-xs-12">
                                                 <ul class="nav nav-pills nav-justified" role="tablist">

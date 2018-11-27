@@ -159,7 +159,7 @@
 
 	<div class="container-fluid special">
 		<div class="heading">
-			<h1>Customer’s Choice</h1>
+			<h1>Products New</h1>
 		</div>
 		<div class="body">
 			<div class="owl-carousel">

@@ -114,7 +114,7 @@
                                                     </tr>
                                                     <tr>
                                                         <th>Loại sản phẩm</th>
-                                                        <td><?php echo ($detail['type'] == 0)? 'Váy cưới' : 'Phụ tùng';?></td>
+                                                        <td><?php echo ($detail['type'] == 0)? 'Váy' : 'Phụ kiện';?></td>
                                                     </tr>
                                                     <?php if ($detail['type'] == 0): ?>
                                                         <tr>
@@ -131,13 +131,24 @@
                                                     <?php if (!empty($data)): ?>
                                                         <?php foreach ($data as $key => $value): ?>
                                                             <?php if ($templates[$key]['type'] != 'radio' && $templates[$key]['type'] != 'checkbox' && $templates[$key]['type'] != 'select' && $templates[$key]['type'] != 'file'): ?>
-                                                                <tr>
-                                                                    <th><?php echo $templates[$key]['title']['vi']?></th>
-                                                                    <td><?php echo $value?></td>
-                                                                </tr>
+                                                                <?php if($detail['type'] == 1 && $key =='kich_thuoc_cho_san_pham') : ?>
+                                                                    <?php unset($data[$key]); ?>
+                                                                    <?php continue; ?>
+                                                                <?php else: ?>
+                                                                    <tr>
+                                                                        <th><?php echo $templates[$key]['title']['vi']?></th>
+                                                                        <td><?php echo $value?></td>
+                                                                    </tr>
+                                                                <?php endif ?>
                                                                 <?php unset($data[$key]); ?>
                                                             <?php endif ?>
                                                         <?php endforeach ?>
+                                                    <?php endif ?>
+                                                    <?php if ($detail['type'] == 0): ?>
+                                                        <tr>
+                                                            <th>Lựa chọn khách hàng: </th>
+                                                            <td><i class="fa fa-<?php echo ($detail['hot'] == '0') ? 'remove" style="color:red;font-size:1.2em;"' : 'check" style="color:green;font-size:1.2em;"';?>></i></td>
+                                                        </tr>
                                                     <?php endif ?>
                                                 </table>
                                             </div>
