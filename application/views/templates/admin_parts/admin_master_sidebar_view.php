@@ -85,6 +85,11 @@
                         </li>
                     </ul>
                 </li>
+                <li class="active">
+                    <a href="<?php echo base_url('admin/color') ?>">
+                        <i class="fa fa-cubes"></i> <span>Color</span>
+                    </a>
+                </li>
                 <li class="<?php echo ($this->uri->segment(2) == 'post' || $this->uri->segment(2) == 'post_category')? 'active' : 'treeview' ?>">
                     <a href="">
                         <i class="fa fa-newspaper-o"></i>

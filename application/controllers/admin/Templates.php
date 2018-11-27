@@ -6,7 +6,7 @@ class Templates extends Admin_Controller {
     );
     function __construct(){
         parent::__construct();
-        return redirect('admin','refresh');
+        // return redirect('admin','refresh');
         $this->load->model('templates_model');
         $this->load->helper('common');
         $this->load->helper('file');

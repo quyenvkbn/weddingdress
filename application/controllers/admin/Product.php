@@ -103,7 +103,8 @@ class Product extends Admin_Controller{
                     'pricepromotion_rent' => $this->input->post('pricepromotion_rent'),
                     'common' => json_encode($common),
                     'type' => $this->input->post('type'),
-                    'collection_id' => $this->input->post('collection_id')
+                    'collection_id' => $this->input->post('collection_id'),
+                    'hot' => $this->input->post('hot'),
                 );
                 $this->db->trans_begin();
                 $insert = $this->product_model->common_insert(array_merge($shared_request,$this->author_data));
@@ -254,7 +255,8 @@ class Product extends Admin_Controller{
                     'pricepromotion_rent' => $this->input->post('pricepromotion_rent'),
                     'common' => json_encode($common),
                     'type' => $this->input->post('type'),
-                    'collection_id' => $this->input->post('collection_id')
+                    'collection_id' => $this->input->post('collection_id'),
+                    'hot' => $this->input->post('hot'),
                 );
                 if($image){
                     $shared_request['image'] = $image;

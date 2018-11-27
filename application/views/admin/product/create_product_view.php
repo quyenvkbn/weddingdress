@@ -160,6 +160,14 @@
                                 <div class="box-body">
                                     <h4 class="box-title">Thông tin cơ bản</h4>
                                     <?php echo $a_language; ?>
+
+                                    <div class="form-group col-xs-12 " id="hot">
+                                        <div class="checkbox">
+                                            <label class="col-xs-12">
+                                              <input type="checkbox" name="hot" > Được khách hàng lựa chọn
+                                            </label>
+                                        </div>
+                                    </div>
                                     <div class="col-xs-12 form-group">
                                         <ul class="nav nav-pills nav-justified" role="tablist">
                                             <?php $i = 0; ?>
@@ -245,6 +253,7 @@
                                             </label>
                                         </div>
                                     </div>
+
                                     <div class="col-md-12" id="rent" style="display: none;">
                                         <div class="col-xs-12" style="border:1px solid #d2d6de;">
                                             <div class="col-md-12" style="padding: 0px;margin-bottom: 10px;">
