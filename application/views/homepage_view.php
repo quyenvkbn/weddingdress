@@ -6,62 +6,47 @@
 	<div class="container-fluid slider">
 		<div id="slider" class="carousel slide" data-ride="carousel">
 			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="mask">
-						<img src="https://images.unsplash.com/photo-1469692422776-14abcfa4b525?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a1a9119f7d084959d94616de600c01a7&auto=format&fit=crop&w=1950&q=80" alt="First slide">
-					</div>
-
-					<div class="content">
-						<h6 class="subtitle">
-							New Collection
-						</h6>
-						<h1>
-							Beautifully Crafted, Amazingly Priced
-
-							<div class="line"></div>
-						</h1>
-
-						<div class="row">
-							<div class="item col">
-								<p class="paragraph">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sem ut vestibulum dapibus. Nunc euismod tincidunt magna ac dapibus. Pellentesque eget interdum ipsum. Nam ultricies nec nibh ut imperdiet.
-								</p>
-							</div>
+				<?php foreach ($banner as $key => $value): ?>
+					<div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
+						<div class="mask">
+							<img src="<?php echo base_url('assets/upload/banner/'.$value['image']); ?>" alt="First slide">
 						</div>
 
-						<a href="<?php ?>" class="btn btn-outline" role="button">
-							View Detail
-						</a>
-					</div>
-				</div>
-				<div class="carousel-item">
-					<div class="mask">
-						<img src="https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80" alt="Second slide">
-					</div>
+						<div class="content">
+							<!-- <h6 class="subtitle">
+								New Collection
+							</h6> -->
+							<h1>
+								<?php if($value['type'] == 1):?>
+									<?php echo $value['category']['collection_title']; ?>
+								<?php else : ?>
+									<?php echo $value['category']['product_category_title']; ?>
+								<?php endif;?>
+								<div class="line"></div>
+							</h1>
 
-					<div class="content">
-						<h6 class="subtitle">
-							New Collection
-						</h6>
-						<h1>
-							Beautifully Crafted, Amazingly Priced
-
-							<div class="line"></div>
-						</h1>
-
-						<div class="row">
-							<div class="item col">
-								<p class="paragraph">
-									Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sem ut vestibulum dapibus. Nunc euismod tincidunt magna ac dapibus. Pellentesque eget interdum ipsum. Nam ultricies nec nibh ut imperdiet.
-								</p>
+							<div class="row">
+								<div class="item col">
+									<p class="paragraph">
+										<?php if($value['type'] == 1):?>
+											<?php echo $value['category']['collection_description']; ?>
+										<?php else : ?>
+											<?php echo $value['category']['product_category_description']; ?>
+										<?php endif;?>
+									</p>
+								</div>
 							</div>
+							<?php if($value['type'] == 1):?>
+								<a href="<?php echo base_url('bo-suu-tap/'.$value['category']['slug']);?>" class="btn btn-outline" role="button">
+							<?php else : ?>
+								<a href="<?php echo base_url('nhom/'.$value['category']['slug']);?>" class="btn btn-outline" role="button">
+							<?php endif;?>
+								<?php echo $this->lang->line('view_detail')?>
+							</a>
 						</div>
-
-						<a href="<?php ?>" class="btn btn-outline" role="button">
-							View Detail
-						</a>
 					</div>
-				</div>
+				<?php endforeach ?>
+				
 			</div>
 			<a class="carousel-control-prev" href="#slider" role="button" data-slide="prev">
 				<i class="fas fa-arrow-left"></i>
@@ -75,10 +60,14 @@
 	</div>
 
 	<div class="container-fluid ads-short">
-		<h5>Sample sale bridal styles starting at $199</h5>
-		<a href="<?php ?>" class="btn btn-light" role="button">
-			View Detail
-		</a>
+		<h5><?php echo $this->lang->line('search_dress')?> 800.000 VND</h5>
+		<form method="post" action="<?php echo base_url('nhom'); ?>">
+			<input type="hidden" name="number_search" value="800000">
+			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
+			<button href="<?php ?>" class="btn btn-light" role="button">
+				<?php echo $this->lang->line('view_detail')?>
+			</button>
+		</form>
 	</div>
 
 	<div class="container-fluid new-arrivals">
@@ -88,7 +77,7 @@
 					<img src="https://images.unsplash.com/photo-1519741497674-611481863552?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=bfef355c0cf4898112f3c63cd8bb4bf9&auto=format&fit=crop&w=1950&q=80" alt="new arrivals image">
 
 					<div class="content">
-						<h1>NEW ARRIVALS</h1>
+						<h1><?php echo $this->lang->line('new_arrivals')?></h1>
 						<h2><span>Fall</span> 2018</h2>
 					</div>
 				</div>
@@ -97,41 +86,25 @@
 			<div class="right col-xs-12 col-md-5">
 				<div id="arrivals" class="carousel slide" data-ride="carousel">
 					<div class="carousel-inner">
-						<div class="carousel-item active">
-							<div class="mask">
-								<img src="https://images.unsplash.com/photo-1469692422776-14abcfa4b525?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=a1a9119f7d084959d94616de600c01a7&auto=format&fit=crop&w=1950&q=80" alt="First slide">
-							</div>
-							<div class="overlay">
-								<div class="content">
-									<h6 class="subtitle">New Arrivals</h6>
-									<h3>Magnolia</h3>
+						<?php foreach ($product as $key => $value): ?>
+							<div class="carousel-item <?php echo ($key == 0) ? 'active' : ''; ?>">
+								<div class="mask">
+									<img src="<?php echo base_url('assets/upload/product/'.$value['slug'].'/'.$value['image']); ?>" alt="First slide">
+								</div>
+								<div class="overlay">
+									<div class="content">
+										<h6 class="subtitle"><?php echo $value['category'] ?></h6>
+										<h3><?php echo $value['product_title']; ?></h3>
 
-									<p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sem ut vestibulum dapibus. Nunc euismod tincidunt magna ac dapibus. Pellentesque eget interdum ipsum. Nam ultricies nec nibh ut imperdiet.</p>
+										<p class="paragraph"><?php echo $value['product_description']; ?></p>
 
-									<a href="<?php echo base_url('') ?>" class="btn btn-outline" role="button">
-										View Detail
-									</a>
+										<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>" class="btn btn-outline" role="button">
+											<?php echo $this->lang->line('view_detail')?>
+										</a>
+									</div>
 								</div>
 							</div>
-						</div>
-						<div class="carousel-item">
-							<div class="mask">
-								<img src="https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80" alt="Second slide">
-							</div>
-							<div class="overlay">
-								<div class="content">
-									<h6 class="subtitle">New Arrivals</h6>
-
-									<h3>Angela</h3>
-
-									<p class="paragraph">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sem ut vestibulum dapibus. Nunc euismod tincidunt magna ac dapibus. Pellentesque eget interdum ipsum. Nam ultricies nec nibh ut imperdiet.</p>
-
-									<a href="<?php echo base_url('') ?>" class="btn btn-outline" role="button">
-										View Detail
-									</a>
-								</div>
-							</div>
-						</div>
+						<?php endforeach ?>
 					</div>
 					<a class="carousel-control-prev" href="#arrivals" role="button" data-slide="prev">
 						<i class="fas fa-arrow-left"></i>
@@ -149,77 +122,85 @@
 	<div class="container-fluid ads-md" style="background-image: url('https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80');">
 		<div class="overlay">
 			<div class="content">
-				<h3>Sample sale bridal styles starting at $199</h3>
-				<a href="<?php ?>" class="btn btn-outline" role="button">
-					View Detail
-				</a>
+
+				<h3><?php echo $this->lang->line('search_dress')?> 800.000 VND</h3>
+				<form method="post" action="<?php echo base_url('nhom'); ?>">
+					<input type="hidden" name="number_search" value="800000">
+					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
+					<button href="<?php ?>" class="btn btn-outline" role="button">
+						<?php echo $this->lang->line('view_detail')?>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid special">
 		<div class="heading">
-			<h1>Products New</h1>
+			<h1><?php echo $this->lang->line('customer_Choice')?></h1>
 		</div>
 		<div class="body">
 			<div class="owl-carousel">
-				<?php for ($i = 0; $i < 15; $i++){ ?>
+				<?php foreach ($product_hot as $key => $value): ?>
+					<?php $data = json_decode($value['data'],true); ?>
 					<div class="item">
-						<a href="<?php echo base_url('') ?>">
+						<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>">
 							<div class="mask">
-								<img src="https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80" alt="image item">
+								<img src="<?php echo base_url('assets/upload/product/'.$value['slug'].'/'.$value['image']); ?>" alt="First slide">
 							</div>
 							<div class="content">
-								<h5>Mermaid</h5>
-								<h6>Serial 08090 <?php echo $i+1 ?></h6>
+								<h5><?php echo $value['product_title']; ?></h5>
+								<h6>Serial <?php echo $data['ma_san_pham'] ?></h6>
 							</div>
 						</a>
 					</div>
-				<?php } ?>
+				<?php endforeach ?>
+				
 			</div>
 		</div>
 	</div>
 
 	<div class="container-fluid story">
 		<div class="heading">
-			<h1>Our Story</h1>
+			<h1><?php echo $this->lang->line('our_story')?></h1>
 		</div>
 		<div class="body">
 			<div class="row">
-				<?php for ($i = 0; $i < 2; $i++){ ?>
+				<?php foreach ($about as $key => $value): ?>
 					<div class="item col-xs-12 col-md-6">
 						<div class="top">
 							<div class="mask">
-								<a href="<?php echo base_url('blogs/detail') ?>">
-									<img src="https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80" alt="image story">
+								<a href="<?php echo base_url('bai-viet/'.$value['slug']) ?>">
+									<img src="<?php echo base_url('assets/upload/post/'.$value['slug'].'/'.$value['image']); ?>" alt="First slide">
 								</a>
 							</div>
 							<div class="content">
-								<h6 class="subtitle">Story Category</h6>
-								<a href="<?php echo base_url('blogs/detail') ?>">
-									<h3 class="text-wrapper">Story Title lcnalsnc cljanscljan calscnlsajn calsjcnaslj</h3>
+								<h6 class="subtitle"><?php  echo ($lang=='vi') ? 'Về chúng tôi' : 'About';?></h6>
+								<a href="<?php echo base_url('bai-viet/'.$value['slug']) ?>">
+									<h3 class="text-wrapper"><?php echo $value['post_title'] ?></h3>
 								</a>
 							</div>
 						</div>
 						<div class="bottom">
 							<div class="line"></div>
 							<p class="paragraph">
-								Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam finibus sem ut vestibulum dapibus. Nunc euismod tincidunt magna ac dapibus. Pellentesque eget interdum ipsum. Nam ultricies nec nibh ut imperdiet…
+								<?php echo $value['post_description'] ?>
 							</p>
 						</div>
 					</div>
-				<?php } ?>
+				<?php endforeach ?>
 			</div>
 		</div>
 		<div class="foot">
-			<a href="<?php echo base_url('') ?>" class="btn btn-primary" role="button">
-				See All Stories
+			<a href="<?php echo base_url('about') ?>" class="btn btn-primary" role="button">
+				<?php echo $this->lang->line('see_all')?>
+				
 			</a>
 		</div>
 	</div>
 
 	<div class="container-fluid connection">
-		<h1>Get Connected</h1>
+		<h1><?php echo $this->lang->line('get_connected')?></h1>
 		<div class="line"></div>
 		<ul>
 			<li>

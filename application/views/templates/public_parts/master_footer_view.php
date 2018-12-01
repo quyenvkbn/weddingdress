@@ -129,54 +129,43 @@
 				<div class="nav-main">
 					<ul>
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								About Us
+							<a href="<?php echo base_url('about') ?>">
+								<?php echo $this->lang->line('about')?>
 							</a>
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								Bride
+							<a href="<?php echo base_url('bo-suu-tap') ?>">
+								<?php echo $this->lang->line('collection')?>
 							</a>
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								Bridesmaids & Occasion Dresses
+							<a href="<?php echo base_url('nhom/phu-dau-dip-le-hoi') ?>">
+								<?php echo $this->lang->line('bridesmaids')?>
 							</a>
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								Accessories
+							<a href="<?php echo base_url('nhom/phu-kien') ?>">
+								<?php echo $this->lang->line('accessories')?>
 							</a>
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								Blogs & News
+							<a href="<?php echo base_url('danh-muc/blogs-tin-tuc') ?>">
+								<?php echo $this->lang->line('blogs')?>
 							</a>
 						</li>
 
 						<li>
-							<a href="<?php echo base_url('') ?>">
-								Promotion
-							</a>
-						</li>
-
-						<li>
-							<a href="<?php echo base_url('') ?>">
-								Appointment
+							<a href="<?php echo base_url('danh-muc/khuyen-mai') ?>">
+								<?php echo $this->lang->line('promotion')?>
 							</a>
 						</li>
 					</ul>
 
 					<ul>
-						<li>
-							<a href="<?php echo base_url('') ?>">
-								About Us
-							</a>
-						</li>
 
 						<li>
 							<a href="<?php echo base_url('booking/') ?>">
@@ -521,6 +510,25 @@
     	return false;
     }
 </script>
+<script>
+    $(".change-language").click(function(){
+        $.ajax({
+            method: "GET",
+            url: "http://localhost/weddingdress/homepage/change_language",
+            data: {
+                lang: $(this).data('language')
+            },
+            async:false,
+            success: function(res){
+                if(res.message == 'changed'){
+                    window.location.reload();
+                }
+            },
+            error: function(){
 
+            }
+        });
+    });
+</script>
 </body>
 </html>

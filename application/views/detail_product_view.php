@@ -7,49 +7,20 @@
 			<div class="left col-xs-12 col-md-12 col-lg-7">
 				<div class="slider-product">
 					<ul class="thumbnails">
-						<li>
-							<a href="#slide1">
-								<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg" />
-							</a>
-						</li>
-						<li>
-							<a href="#slide2">
-								<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg" />
-							</a>
-						</li>
-						<li>
-							<a href="#slide3">
-								<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg" />
-							</a>
-						</li>
-						<li>
-							<a href="#slide4">
-								<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg" />
-							</a>
-						</li>
-						<li>
-							<a href="#slide5">
-								<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw5.jpg" />
-							</a>
-						</li>
+						<?php foreach ($detail['collection'] as $key => $value): ?>
+							<li>
+								<a href="#slide<?php echo $key+1; ?>">
+									<img src="<?php echo base_url('assets/upload/product/'.$detail['slug'].'/'.$value)?>" />
+								</a>
+							</li>
+						<?php endforeach ?>
 					</ul>
-
 					<ul class="slides">
-						<li id="slide1">
-							<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw1.jpg" alt="" />
-						</li>
-						<li id="slide2">
-							<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw2.jpg" alt="" />
-						</li>
-						<li id="slide3">
-							<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw3.jpg" alt="" />
-						</li>
-						<li id="slide4">
-							<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw4.jpg" alt="" />
-						</li>
-						<li id="slide5">
-							<img src="https://cdn.rawgit.com/huijing/filerepo/gh-pages/lw5.jpg" alt="" />
-						</li>
+						<?php foreach ($detail['collection'] as $key => $value): ?>
+							<li id="slide<?php echo $key+1; ?>">
+								<img src="<?php echo base_url('assets/upload/product/'.$detail['slug'].'/'.$value)?>" alt="" />
+							</li>
+						<?php endforeach ?>
 					</ul>
 
 				</div>
@@ -59,27 +30,37 @@
 				<div class="content">
 					<div class="overall item">
 						<h4>
-							Name of Product: White by Vera Wang Floral Illusion Wedding Dress
+							<?php echo $this->lang->line('name_product')?>: <?php echo $detail['product_title'];?>
 						</h4>
 						<h5>
-							Category: New Arrivals
+							<?php echo $this->lang->line('category')?>: <?php echo $detail['parent_title']; ?>
 						</h5>
-						<span class="code">Code: CDG310</span>
+						<span class="code"><?php echo $this->lang->line('code')?>: <?php echo $detail['data']['ma_san_pham'];?></span>
 
 						<table class="table table-borderless">
+							<?php if ($detail['common']['rent'] == 'true'): ?>
+								<tr>
+									<td><?php echo $this->lang->line('filter_rent')?></td>
+									<td>
+	                                    <span class="price-rent">
+											<?php if ($detail['common']['showpromotion_rent'] == 'true'): ?>
+												<?php echo $detail['pricepromotion_rent'] ?> vnd <small><?php echo $detail['price_rent'] ?> vnd</small>
+											<?php else:?>
+			                                    <?php echo $detail['price_rent'] ?> vnd 
+											<?php endif ?>
+	                                    </span>
+									</td>
+								</tr>
+							<?php endif ?>
 							<tr>
-								<td>Rent Cost</td>
-								<td>
-									<span class="price-rent">
-                                        999.999.999 vnd <small>999.999.000 vnd</small>
-                                    </span>
-								</td>
-							</tr>
-							<tr>
-								<td>Price</td>
+								<td><?php echo $this->lang->line('price')?></td>
 								<td>
 									<span class="price-buy">
-                                        999.999.999 vnd <small>999.999.000 vnd</small>
+										<?php if ($detail['common']['sale'] == 'true' && $detail['common']['showpromotion'] == 'true'): ?>
+											<?php echo $detail['pricepromotion'] ?> vnd <small><?php echo $detail['price'] ?> vnd</small>
+										<?php else:?>
+		                                    <?php echo $detail['price'] ?> vnd 
+										<?php endif ?>
                                     </span>
 								</td>
 							</tr>
@@ -88,48 +69,52 @@
 
 					<div class="detail item">
 						<h5>
-							Detail Infomation
+							<?php echo $this->lang->line('detail_infomation')?>
 						</h5>
 
 						<table class="table table-borderless">
 							<tr>
-								<td>Color</td>
+								<td><?php echo $this->lang->line('color')?></td>
 								<td colspan="2">
-									<span>White</span>
+									<span><?php echo $detail['product_data_lang']['mau_san_pham'];?></span>
 								</td>
 							</tr>
 							<tr>
-								<td>Size</td>
+								<td><?php echo $this->lang->line('size')?></td>
 								<td>
-									<span>M, L , S</span>
+									<?php echo $detail['data']['kich_thuoc_cho_san_pham'];?>
 								</td>
 								<td>
+								</td>
+								<!-- <td>
 									<a href="javascript:void(0)">
 										Size & Fit Guide
 									</a>
-								</td>
+								</td> -->
 							</tr>
 						</table>
 					</div>
 
 					<div class="desc item">
 						<h5>
-							Detail Infomation
+							<?php echo $this->lang->line('detail_infomation')?>
 						</h5>
 
 						<p class="paragraph">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel scelerisque diam. Morbi sit amet vulputate libero. Integer vestibulum tincidunt justo eu varius. Duis augue orci, aliquet eget faucibus eget, luctus vel felis.
-							<a href="javascript:void(0)">Read more...</a>
+							<?php echo $detail['product_content']; ?>
+							<a href="javascript:void(0)"><?php echo $this->lang->line('read_more')?>...</a>
 						</p>
-
-						<button class="btn btn-primary" type="button">
-							<i class="fas fa-check-circle"></i> Booking Now
-						</button>
+						<form action="<?php echo base_url('booking');?>" method="get">
+							
+							<button type="submit" class="btn btn-primary" type="button">
+								<i class="fas fa-check-circle"></i> <?php echo $this->lang->line('contact_now')?>
+							</button>
+						</form>
 					</div>
 
 					<div class="share item">
 						<h5>
-							Share this: <a href="javascript:void(0)"><i class="fab fa-facebook-square"></i> </a>
+							<?php echo $this->lang->line('share')?>: <a href="javascript:void(0)"><i class="fab fa-facebook-square"></i> </a>
 						</h5>
 					</div>
 
@@ -140,16 +125,18 @@
 
 	<div class="container" id="related">
 		<h1>
-			Related Products
+			<?php echo $this->lang->line('related_products')?>
 		</h1>
 
 		<div class="row">
-            <?php for ($i = 0; $i < 4; $i++) { ?>
-				<div class="item col-xs-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.<?php echo $i ?>s">
+			<?php foreach ($detail['product_related'] as $key => $value): ?>
+				<?php $data = json_decode($value['data'],true); ?>
+                <?php $common = json_decode($value['common'],true); ?>
+				<div class="item col-xs-12 col-md-6 col-lg-3 wow fadeInUp" data-wow-delay="0.<?php echo $key ?>s">
 					<div class="image">
 						<div class="mask">
-							<a href="<?php echo base_url('product/detail/') ?>">
-								<img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/37390753_418398698672124_8871318781691953152_n.jpg?_nc_cat=103&_nc_ht=scontent.fsgn2-2.fna&oh=6beea61e6da7aaef01d3d28a1876ebe8&oe=5C7C7AC1" alt="image product">
+							<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>">
+								<img src="<?php echo base_url('assets/upload/product/'.$value['slug'].'/'.$value['image']); ?>" alt="First slide">
 							</a>
 						</div>
 
@@ -160,23 +147,32 @@
 
 					<div class="content">
 						<h4>
-							<a href="<?php echo base_url('product/detail/') ?>">
-								Appliqued Chantilly Lace Trumpet Wedding Dress
+							<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>">
+								<?php echo $value['product_title'] ?>
 							</a>
 						</h4>
-						<h6>Code: CDG310</h6>
+						<h6>Code: <?php echo $data['ma_san_pham'] ?></h6>
 						<div class="price">
-							<span class="price-rent">
-								999.999.999 vnd <small>999.999.000 vnd</small>
-							</span>
-
+							<?php if ($common['rent'] == 'true'): ?>
+                                <span class="price-rent">
+									<?php if ($common['showpromotion_rent'] == 'true'): ?>
+										<?php echo $value['pricepromotion_rent'] ?> vnd <small><?php echo $value['price_rent'] ?> vnd</small>
+									<?php else:?>
+	                                    <?php echo $value['price_rent'] ?> vnd 
+									<?php endif ?>
+                                </span>
+							<?php endif ?>
 							<span class="price-buy">
-								999.999.999 vnd <small>999.999.000 vnd</small>
-							</span>
+							<?php if ($common['sale'] == 'true' && $common['showpromotion'] == 'true'): ?>
+								<?php echo $value['pricepromotion'] ?> vnd <small><?php echo $value['price'] ?> vnd</small>
+							<?php else:?>
+                                <?php echo $value['price'] ?> vnd 
+							<?php endif ?>
+                            </span>
 						</div>
 					</div>
 				</div>
-            <?php } ?>
+			<?php endforeach ?>
 		</div>
 	</div>
 </section>

@@ -60,7 +60,7 @@ class Post extends Admin_Controller{
         $this->render('admin/post/list_post_view');
     }
 
-	public function create($id_template){
+	public function create($id_template = 24){
         if($id_template &&  is_numeric($id_template) && ($id_template > 0)){
             $this->load->helper('form');
             $this->load->library('form_validation');

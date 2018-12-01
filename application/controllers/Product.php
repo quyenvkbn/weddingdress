@@ -12,40 +12,72 @@ class Product extends Public_Controller {
         $this->load->model('product_model');
         $this->data['number_field'] = 6;
     }
-    public function index(){
+    public function category($slug = ''){
+        if($slug != '' && $this->product_category_model->find_rows(array('slug' => $slug,'is_deleted' => 0,'is_activated' => 0)) == 0){
+            redirect('/', 'refresh');
+        }else{
+            if($slug != ''){
+                $this->data['product_category'] = $this->product_category_model->get_by_slug($slug,'desc',$this->data['lang']);
+                if(!empty($this->input->post()) && !empty($this->input->post('salerent'))){
+                    $search = explode('_',$this->input->post('salerent'));
+                    $number = explode('-',$search[1]);
+                    if($search[0] == 'sale'){
+                        $this->data['product'] = $this->product_model->get_all_search_sale($this->data['product_category']['id'],$this->data['lang'],$number[0],$number[1]);
+                    }else{
+                        $this->data['product'] = $this->product_model->get_all_search_rent($this->data['product_category']['id'],$this->data['lang'],$number[0],$number[1]);
+                    }
+                }else{
+                    $this->data['product'] = $this->product_model->get_all_search_sale($this->data['product_category']['id'],$this->data['lang']);
+                }
+            }else{
+                if(!empty($this->input->post()) && !empty($this->input->post('number_search'))){
+                    $this->data['product'] = $this->product_model->get_all_search_home($this->data['lang'],$this->input->post('number_search'));
+                }elseif(!empty($this->input->post()) && !empty($this->input->post('salerent'))){
+                    $search = explode('_',$this->input->post('salerent'));
+                    $number = explode('-',$search[1]);
+                    $this->data['product'] = $this->product_model->get_all_search_home($this->data['lang'],$number[0],$number[1]);
+                }else{
+                    $this->data['product'] = $this->product_model->get_all_search_home($this->data['lang']);
+                }
+                
+            }
+        }
+        if(count($this->data['product']) == 0){
+            $this->data['message'] = ($this->data['lang'] == 'vi') ? 'Không có sản phẩm nào được tìm thấy' : 'No products were found';
+        }
+        if(empty($this->data['product_category'])){
+            $this->data['message_category'] = ($this->data['lang'] == 'vi') ? 'Không có dữ liệu' : 'No data';
+        }
+        $this->render('list_products_view');
+    }
+    public function search(){
+        if(!empty($this->input->post()) && !empty($this->input->post('number_search'))){
+            $this->data['product'] = $this->product_model->get_all_search_home($this->data['lang'],$this->input->post('number_search'));
+        }else{
+            redirect('/', 'refresh');
+        }
         $this->render('list_products_view');
     }
 
-    public function detail(){
-        $this->render('detail_product_view');
-    }
+    // public function detail(){
+    //     $this->render('detail_product_view');
+    // }
 
-//    public function detail($slug){
-//        $detail = $this->product_model->get_by_slug($slug, array('title', 'description', 'content','data_lang'),'vi');
-//        $detail['product_data_lang'] = json_decode($detail['product_data_lang'],true);
-//        $detail['metakeywords'] = $detail['product_data_lang']['tu_khoa_meta'];
-//        $detail['metadescription'] = $detail['product_data_lang']['mo_ta_meta'];
-//        $detail['collection'] = json_decode($detail['collection'],true);
-//        $detail['common'] = json_decode($detail['common'],true);
-//        $detail['date'] = explode(',', $detail['date']);
-//        $this->data['detail'] = $detail;
-//        $this->render('detail_product_view');
-//    }
-    public function category($slug){
-        // if($this->product_category_model->find_rows(array('slug' => $slug,'is_deleted' => 0,'is_activated' => 0)) != 0){
-        //     $detail = $this->product_category_model->get_by_slug_lang($slug,array(),$this->data['lang']);
-        //     if($detail['parent_id'] == 0){
+   public function detail($slug){
+       $detail = $this->product_model->get_by_slug($slug, array('title', 'description', 'content','data_lang'),$this->data['lang']);
+       $detail['product_data_lang'] = json_decode($detail['product_data_lang'],true);
+       $detail['metakeywords'] = $detail['product_data_lang']['tu_khoa_meta'];
+       $detail['metadescription'] = $detail['product_data_lang']['mo_ta_meta'];
+       $detail['collection'] = json_decode($detail['collection'],true);
+       $detail['common'] = json_decode($detail['common'],true);
+       $detail['data'] = json_decode($detail['data'],true);
+       $detail['date'] = explode(',', $detail['date']);
 
-        //     }else{
-
-        //     }
-        // }
-        $this->data['detail'] = $this->value[$id];
-        //echo '<pre>';
-        //print_r($this->data['detail']);die;
-
-        $this->render('detail_product_view');
-    }
+       $detail['product_related'] = $this->product_model->get_all_and_by_category(array('title','description', 'content'),$this->data['lang'],4,'','DESC',$detail['product_category_id']);
+       $this->data['detail'] = $detail;
+       
+       $this->render('detail_product_view');
+   }
     public function created_rating(){
         $ip = $this->getRealIPAddress();
         if($this->session->has_userdata($ip) && in_array($this->input->get('product_id'), $this->session->userdata($ip))){

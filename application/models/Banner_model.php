@@ -6,6 +6,14 @@
 class Banner_model extends MY_Model{
     
     public $table = 'banner';
+
+    public function get_all_banner() {
+        $this->db->select('*');
+        $this->db->from($this->table);
+        $this->db->where('is_activated', 0);
+        $this->db->where('is_deleted', 0);
+        return $result = $this->db->get()->result_array();
+    }
     public function get_by_parent_id($parent_id, $order = 'desc',$lang = ''){
         $this->db->select($this->table .'.*, '. $this->table_lang .'.title');
         $this->db->from($this->table);

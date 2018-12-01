@@ -47,38 +47,38 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 			<ul>
 				<li>
-					<a href="<?php echo base_url('about/') ?>">
-						About Us
+					<a href="<?php echo base_url('about') ?>">
+						<?php echo $this->lang->line('about')?>
 					</a>
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('collections/') ?>">
-						Bride
+					<a href="<?php echo base_url('bo-suu-tap') ?>">
+						<?php echo $this->lang->line('collection')?>
 					</a>
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('product/') ?>">
-						Bridesmaids & Occasion Dresses
+					<a href="<?php echo base_url('nhom/phu-dau-dip-le-hoi') ?>">
+						<?php echo $this->lang->line('bridesmaids')?>
 					</a>
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('product/') ?>">
-						Accessories
+					<a href="<?php echo base_url('nhom/phu-kien') ?>">
+						<?php echo $this->lang->line('accessories')?>
 					</a>
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('blogs/') ?>">
-						Blogs & News
+					<a href="<?php echo base_url('danh-muc/blogs-tin-tuc') ?>">
+						<?php echo $this->lang->line('blogs')?>
 					</a>
 				</li>
 
 				<li>
-					<a href="<?php echo base_url('blogs/') ?>">
-						Promotion
+					<a href="<?php echo base_url('danh-muc/khuyen-mai') ?>">
+						<?php echo $this->lang->line('promotion')?>
 					</a>
 				</li>
 
@@ -105,13 +105,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 		<div class="nav-lang nav-item">
 			<ul>
 				<li>
-					<a href="<?php echo base_url('') ?>">
-						En
+					<a class="active change-language" data-language="vi" href="javascript:void(0)" href="<?php echo base_url('') ?>">
+						Vi
 					</a>
 				</li>
 				<li>
-					<a href="<?php echo base_url('') ?>">
-						Vi
+					<a class="change-language" data-language="en" href="javascript:void(0)" href="<?php echo base_url('') ?>">
+						En
 					</a>
 				</li>
 			</ul>
@@ -119,7 +119,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<div class="nav-btn nav-item">
 			<a href="<?php echo base_url('booking/') ?>" class="btn btn-primary" role="button">
-				Booking an Appointment
+				<?php  echo ($lang=='vi') ? 'Đặt Hẹn' : 'Booking an Appointment';?>
 			</a>
 		</div>
 

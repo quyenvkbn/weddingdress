@@ -7,10 +7,10 @@
             <!-- Sidebar user panel -->
             <div class="user-panel">
                 <div class="pull-left image">
-                    <img src="<?php echo site_url('assets/img/admin/user2-160x160.jpg') ?>" class="img-circle" alt="User Image">
+                    <img src="<?php echo site_url('assets/img/admin/userss.png') ?>" class="img-circle" alt="User Image">
                 </div>
                 <div class="pull-left info">
-                    <p>Alexander Pierce</p>
+                    <p>Ciel de Gia</p>
                     <a href="#"><i class="fa fa-circle text-success"></i> Online</a>
                 </div>
             </div>
@@ -53,8 +53,13 @@
                     </a>
                 </li> -->
 
-                <li class="active">
+                <li class="active hidden">
                     <a href="<?php echo base_url('admin/config_contact') ?>">
+                        <i class="fa fa-inbox"></i> <span>Contact</span>
+                    </a>
+                </li>
+                <li class="active">
+                    <a href="<?php echo base_url('admin/contact') ?>">
                         <i class="fa fa-inbox"></i> <span>Contact</span>
                     </a>
                 </li>
@@ -85,7 +90,7 @@
                         </li>
                     </ul>
                 </li>
-                <li class="active">
+                <li class="active hidden">
                     <a href="<?php echo base_url('admin/color') ?>">
                         <i class="fa fa-cubes"></i> <span>Color</span>
                     </a>
@@ -112,14 +117,14 @@
                         <i class="fa fa-align-left"></i> <span>Menu</span>
                     </a>
                 </li> -->
-                <li class="header">DOCUMENTATION</li>
-                <li>
+                <li class="header hidden">DOCUMENTATION</li>
+                <li class="hidden">
                     <a href="<?php echo base_url('admin/user/change_password') ?>">
                         <i class="fa fa-refresh" aria-hidden="true"></i> <span>Đổi Mật Khẩu</span>
                     </a>
                 </li>
                 <?php if ($this->ion_auth->is_admin()===TRUE): ?>
-                    <li>
+                    <li class="hidden">
                         <a href="<?php echo base_url('admin/user/register') ?>">
                             <i class="fa fa-registered" aria-hidden="true"></i> <span>Tạo tài khoản</span>
                         </a>

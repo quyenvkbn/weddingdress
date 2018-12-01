@@ -49,7 +49,7 @@
                             </div>
                         </div>
 
-                        <div class="form-group col-xs-12">
+                        <div class="form-group col-xs-12" style="display: none;">
                             <div class="form-group col-xs-12">
                                 <?php
                                 echo form_label('Danh mục', 'parent_id_shared');
@@ -86,7 +86,7 @@
                                                     if($k == 'title' && in_array($k, $request_language_template)){
                                                         echo form_label($val, $k .'_'. $key);
                                                         echo form_error($k .'_'. $key);
-                                                        echo form_input($k .'_'. $key, $detail['title_'. $key], 'class="form-control" id="title_'.$key.'"');
+                                                        echo form_input($k .'_'. $key, $detail['title_'. $key], 'class="form-control disabled" disabled id="title_'.$key.'"');
                                                     }elseif($k == 'description' && in_array($k, $request_language_template)){
                                                         echo form_label($val, $k .'_'. $key);
                                                         echo form_error($k .'_'. $key);
@@ -112,7 +112,7 @@
                                 <?php endforeach ?>
                             </div>
                         </div>
-                        <?php echo form_submit('submit_shared', 'OK', 'class="btn btn-primary"'); ?>
+                        <?php echo form_submit('submit_shared', 'OK', 'class="btn btn-primary" onclick="removedisable()"'); ?>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -183,6 +183,13 @@
             $('#slug_shared').val(to_slug($('#title_vi').val()));
         });
     });
+</script>
+<script type="text/javascript">
+    function removedisable(){
+        for (var i = 0; i < document.querySelectorAll('.disabled').length; i++) {
+            document.querySelectorAll('.disabled')[i].removeAttribute('disabled');
+        }
+    }
 </script>
 <?php 
     function build_new_category($categorie, $parent_id = 0, $detail_parent_id,$detail_id = "",$char = ''){

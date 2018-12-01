@@ -46,7 +46,7 @@ class Product extends Admin_Controller{
         $this->render('admin/product/list_product_view');
     }
 
-	public function create($id_template){
+	public function create($id_template = 23){
         if($id_template &&  is_numeric($id_template) && ($id_template > 0)){
     		$this->load->helper('form');
             if($this->templates_model->find_rows(array('is_deleted' => 0, 'id' => $id_template, 'type' => '2')) != 0){
