@@ -56,6 +56,7 @@ class Post_category extends Admin_Controller{
         $this->render('admin/'. $this->controller .'/list_post_category_view');
     }
 	public function create(){
+        return redirect('admin/'. $this->data['controller'],'refresh');
 		$this->load->helper('form');
         $this->load->library('form_validation');
 
@@ -200,6 +201,7 @@ class Post_category extends Admin_Controller{
     }
 
     function remove(){
+        return redirect('admin/'. $this->data['controller'],'refresh');
         $id = $this->input->post('id');
         $this->load->model("menu_model");
         $this->load->model('post_model');

@@ -3,19 +3,27 @@
 
 <section id="products">
 	<div class="container-fluid ads-short">
-		<h5>Sample sale bridal styles starting at $199</h5>
-		<a href="<?php ?>" class="btn btn-light" role="button">
-			View Detail
-		</a>
+		<h5><?php echo $this->lang->line('search_dress')?> 800.000 VND</h5>
+		<form method="post" action="<?php echo base_url('nhom'); ?>">
+			<input type="hidden" name="number_search" value="800000">
+			<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
+			<button href="<?php ?>" class="btn btn-light" role="button">
+				<?php echo $this->lang->line('view_detail')?>
+			</button>
+		</form>
 	</div>
 
 	<div class="container-fluid ads-md" style="background-image: url('https://images.unsplash.com/photo-1487163731010-29462200612c?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=817b0c5460d4ea65f3baaabc78b0ddd4&auto=format&fit=crop&w=1953&q=80');">
 		<div class="overlay">
 			<div class="content">
-				<h3>Sample sale bridal styles starting at $199</h3>
-				<a href="<?php ?>" class="btn btn-outline" role="button">
-					View Detail
-				</a>
+				<h3><?php echo $this->lang->line('search_dress')?> 800.000 VND</h3>
+				<form method="post" action="<?php echo base_url('nhom'); ?>">
+					<input type="hidden" name="number_search" value="800000">
+					<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
+					<button href="<?php ?>" class="btn btn-outline" role="button">
+						<?php echo $this->lang->line('view_detail')?>
+					</button>
+				</form>
 			</div>
 		</div>
 	</div>
@@ -28,14 +36,19 @@
 						<div class="card-header" id="headingOne">
 							<h5 class="mb-0">
 								<button class="btn btn-link" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-									Explore
+									<?php echo $this->lang->line('explore')?>
 								</button>
 							</h5>
 						</div>
 
 						<div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#sideBar">
 							<div class="card-body">
-								Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+								<?php if (!empty($product_category['content'])): ?>
+									<?php echo $product_category['content']; ?>
+								<?php else:?>
+									<?php echo $message_category ?>
+								<?php endif ?>
+								
 							</div>
 						</div>
 					</div>
@@ -43,45 +56,83 @@
 						<div class="card-header" id="headingTwo">
 							<h5 class="mb-0">
 								<button class="btn btn-link collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-									Filter by
+									<?php echo $this->lang->line('filter')?>
 								</button>
 							</h5>
 						</div>
 						<div id="collapseTwo" class="collapse show" aria-labelledby="headingTwo" data-parent="#sideBar">
 							<div class="card-body">
-								<div class="item">
-									<div class="item-head">
-										Rent Cost
-									</div>
-									<div class="item-body">
-										<?php for ($i = 0; $i < 4; $i++) { ?>
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="Radios1" id="Radios1-<?php echo $i ?>" value="option1-<?php echo $i ?>" <?php echo ($i == 0)? 'checked' : '' ?>>
-												<label class="form-check-label" for="Radios<?php echo $i ?>">
-													0 - 999.999.999 vnd
+								<form method="post">
+									<input type="hidden" name="uri" value="<?php echo $this->uri->segment(2);?>">
+									<input type="hidden" name="<?php echo $this->security->get_csrf_token_name(); ?>" value="<?php echo $this->security->get_csrf_hash() ?>" id="csrf_sitecom_token" />
+									<div class="item">
+										<div class="item-head">
+											<?php echo $this->lang->line('filter_rent')?>
+										</div>
+										<div class="item-body">
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="rent1" value="rent_0-199999">
+												<label class="form-check-label" for="rent1">
+													0 - 199.999 VND
 												</label>
 											</div>
-										<?php } ?>
-									</div>
-								</div>
-
-								<div class="item">
-									<div class="item-head">
-										Price
-									</div>
-									<div class="item-body">
-                                        <?php for ($i = 0; $i < 4; $i++) { ?>
-											<div class="form-check">
-												<input class="form-check-input" type="radio" name="Radios2" id="Radios2-<?php echo $i ?>" value="option2-<?php echo $i ?>" <?php echo ($i == 0)? 'checked' : '' ?>>
-												<label class="form-check-label" for="Radios<?php echo $i ?>">
-													0 - 999.999.999 vnd
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="rent2" value="rent_200000-399999">
+												<label class="form-check-label" for="rent2">
+													200.000 - 399.999 VND
 												</label>
 											</div>
-                                        <?php } ?>
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="rent3" value="rent_400000-899999">
+												<label class="form-check-label" for="rent3">
+													400.000 - 899.999 VND
+												</label>
+											</div>
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="rent4" value="rent_900000-4999999">
+												<label class="form-check-label" for="rent4">
+													900.000 - 4.999.999 VND
+												</label>
+											</div>
+										</div>
 									</div>
-								</div>
 
-								<div class="item">
+									<div class="item">
+										<div class="item-head">
+											<?php echo $this->lang->line('price')?>
+										</div>
+										<div class="item-body">
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="sale1" value="sale_0-999999">
+												<label class="form-check-label" for="sale1">
+													0 - 999.999 VND
+												</label>
+											</div>
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="sale2" value="sale_1000000-3999999">
+												<label class="form-check-label" for="sale2">
+													1.000.000 - 3.999.999 VND
+												</label>
+											</div>
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="sale3" value="sale_4000000-7999999">
+												<label class="form-check-label" for="sale3">
+													4.000.000 - 7.999.999 VND
+												</label>
+											</div>
+											<div class="form-check" onclick="check_radio(this)">
+												<input class="form-check-input" type="radio" name="salerent" id="sale4" value="sale_8000000-19999999">
+												<label class="form-check-label" for="sale4">
+													8.000.000 - 19.999.999 VND
+												</label>
+											</div>
+										</div>
+									</div>
+									<div class="item">
+										<button class="btn btn-sm text right" style="color:  #444444;">Filter</button>
+									</div>
+								</form>
+							<!-- 	<div class="item">
 									<div class="item-head">
 										Silhouette
 									</div>
@@ -115,7 +166,7 @@
 											</label>
 										</div>
 									</div>
-								</div>
+								</div> -->
 							</div>
 						</div>
 					</div>
@@ -125,12 +176,18 @@
 			<div class="right col-xs-12 col-md-12 col-lg-9">
 				<div class="grid">
 					<div class="grid-sizer"></div>
-                    <?php for ($i = 0; $i < 8; $i++) { ?>
-						<div class="grid-item <?php echo ($i % 2 == 0)? 'grid-item-mt' : '' ?> wow fadeInUp" data-wow-delay="0.<?php echo $i ?>s">
+					<?php if (count($product) == 0): ?>
+            			<?php echo $message;?>
+					<?php endif ?>
+                    <?php foreach ($product as $key => $value): ?>
+                    	<?php $data = json_decode($value['data'],true); ?>
+                    	<?php $common = json_decode($value['common'],true); ?>
+                    	
+						<div class="grid-item <?php echo ($key % 2 == 0)? 'grid-item-mt' : '' ?> wow fadeInUp" data-wow-delay="0.<?php echo $key ?>s">
 							<div class="image">
 								<div class="mask">
-									<a href="<?php echo base_url('product/detail/') ?>">
-										<img src="https://scontent.fsgn2-2.fna.fbcdn.net/v/t1.0-9/37390753_418398698672124_8871318781691953152_n.jpg?_nc_cat=103&_nc_ht=scontent.fsgn2-2.fna&oh=6beea61e6da7aaef01d3d28a1876ebe8&oe=5C7C7AC1" alt="image product">
+									<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>">
+										<img src="<?php echo base_url('assets/upload/product/'.$value['slug'].'/'.$value['image']); ?>" alt="First slide">
 									</a>
 								</div>
 
@@ -141,23 +198,32 @@
 
 							<div class="content">
 								<h4>
-									<a href="<?php echo base_url('product/detail/') ?>">
-										Appliqued Chantilly Lace Trumpet Wedding Dress
+									<a href="<?php echo base_url('san-pham/'.$value['slug']) ?>">
+										<?php echo $value['title'] ?>
 									</a>
 								</h4>
-								<h6>Code: CDG310</h6>
+								<h6>Code: <?php echo $data['ma_san_pham'] ?></h6>
 								<div class="price">
-                                    <span class="price-rent">
-                                        999.999.999 vnd <small>999.999.000 vnd</small>
-                                    </span>
-
+									<?php if ($common['rent'] == 'true'): ?>
+	                                    <span class="price-rent">
+											<?php if ($common['showpromotion_rent'] == 'true'): ?>
+												<?php echo $value['pricepromotion_rent'] ?> vnd <small><?php echo $value['price_rent'] ?> vnd</small>
+											<?php else:?>
+			                                    <?php echo $value['price_rent'] ?> vnd 
+											<?php endif ?>
+	                                    </span>
+									<?php endif ?>
 									<span class="price-buy">
-                                        999.999.999 vnd <small>999.999.000 vnd</small>
-                                    </span>
+									<?php if ($common['sale'] == 'true' && $common['showpromotion'] == 'true'): ?>
+										<?php echo $value['pricepromotion'] ?> vnd <small><?php echo $value['price'] ?> vnd</small>
+									<?php else:?>
+	                                    <?php echo $value['price'] ?> vnd 
+									<?php endif ?>
+	                                </span>
 								</div>
 							</div>
 						</div>
-                    <?php } ?>
+                    <?php endforeach ?>
 				</div>
 			</div>
 		</div>
@@ -171,7 +237,16 @@
 <script src="<?php echo site_url('node_modules/imagesloaded/') ?>imagesloaded.pkgd.min.js"></script>
 <!-- wow JS -->
 <script src="<?php echo site_url('node_modules/wow.js/') ?>dist/wow.min.js"></script>
-
+<script type="text/javascript">
+	function check_radio(ev){
+// 		for (var i = 0; i < document.querySelectorAll('.form-check').length; i++){
+//             if (document.querySelectorAll('.form-check')[i].querySelector('input').checked === true){
+// 				document.querySelectorAll('.form-check')[i].querySelector('input').checked = false;
+//             }
+//         }
+// 		ev.querySelector('input').setAttribute('checked','checked')
+	}
+</script>
 <script>
     $(document).ready(function(){
         // init Isotope

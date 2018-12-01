@@ -2,7 +2,7 @@
 <link rel="stylesheet" href="<?php echo site_url('node_modules/animate.css/') ?>animate.min.css">
 
 <section id="blogs">
-	<div class="container-fluid" id="grid-controls">
+	<div class="container-fluid" id="grid-controls" style="display: none;">
 		<div class="container">
 			<ul class="nav nav-pills nav-fill">
 				<li class="nav-item">
@@ -26,28 +26,28 @@
 	<div class="container" id="grid-content">
 		<div class="grid">
 			<div class="grid-sizer"></div>
-            <?php for ($i = 0; $i < 8; $i++) { ?>
-				<div class="grid-item <?php echo ($i % 2 == 0)? 'plan' : '' ?> wow fadeInUp" data-wow-delay="0.<?php echo $i ?>s">
+            <?php foreach ($blog as $key => $value): ?>
+				<div class="grid-item <?php echo ($key % 2 == 0)? 'plan' : '' ?> wow fadeInUp" data-wow-delay="0.<?php echo $key ?>s">
 					<div class="image">
-						<a href="<?php echo base_url('blogs/detail/') ?>">
-							<img src="https://images.unsplash.com/photo-1519225421980-715cb0215aed?ixlib=rb-0.3.5&ixid=eyJhcHBfaWQiOjEyMDd9&s=58a24190d8298ebfad35691d6695bdbb&auto=format&fit=crop&w=1950&q=80" alt="image product">
+						<a href="<?php echo base_url('bai-viet/'.$value['slug']) ?>">
+							<img src="<?php echo base_url('assets/upload/post/'.$value['slug'].'/'.$value['image']) ?>">
 						</a>
 					</div>
 
 					<div class="content">
 						<h4>
-							<a href="<?php echo base_url('blogs/detail/') ?>">
-								Appliqued Chantilly Lace Trumpet Wedding Dress
+							<a href="<?php echo base_url('bai-viet/'.$value['slug']) ?>">
+								<?php echo $value['title'] ?>
 							</a>
 						</h4>
 						<p class="paragraph">
-							Lorem ipsum dolor sit amet, consectetur adipiscing elit. Mauris vel scelerisque diam. Morbi sit amet vulputate libero. Integer vestibulum tincidunt justo eu varius. Duis augue orci, aliquet eget faucibus eget, luctus vel felis.
-							<a href="<?php echo base_url('blogs/detail/') ?>">Read more...</a>
+							<?php echo $value['description'] ?>
+							<a href="<?php echo base_url('bai-viet/'.$value['slug']) ?>"><?php echo $this->lang->line('read_more')?>...</a>
 						</p>
-						<span class="date">20 Oct 2018</span>
+						<span class="date" style="display: none;">20 Oct 2018</span>
 					</div>
 				</div>
-            <?php } ?>
+            <?php endforeach ?>
 		</div>
 	</div>
 </section>

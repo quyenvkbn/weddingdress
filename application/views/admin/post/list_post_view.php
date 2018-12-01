@@ -39,7 +39,8 @@
 
                     <div class="row" style="padding: 10px;">
                         <div class="col-md-6">
-                            <span type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary"  >Thêm mới</span>
+                            <span type="button" data-toggle="modal" data-target="#myModal" class="btn btn-primary hidden"  >Thêm mới</span>
+                            <a href="<?php echo base_url('admin/post/create') ?>" class="btn btn-primary">Thêm mới</a>
                         </div>
                         <div class="col-md-6">
                             <form action="<?php echo base_url('admin/'.$controller.'/index') ?>" method="get">

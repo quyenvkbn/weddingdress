@@ -27,30 +27,30 @@
 
 	<div class="container" id="list-contact">
 		<div class="row">
-			<?php for ($i = 0; $i < 4; $i++) { ?>
+			<?php foreach ($contact_data as $key => $value): ?>
 				<div class="item col-xs-12 col-md-4">
 					<div class="inner">
-						<h3>Name of Address <?php echo $i+1 ?></h3>
+						<h3><?php echo $value['title']?></h3>
 
 						<div class="table-responsive">
 							<table class="table table-borderless">
 								<tr>
-									<td>Address:</td>
-									<td>Shop D 102 Charters Towers Road, Hermit Park QLD 4810, Australia</td>
+									<td style="width: 130px;"><?php echo $this->lang->line('address')?>:</td>
+									<td><?php echo $value['address']?></td>
 								</tr>
 								<tr>
-									<td>Tel:</td>
+									<td style="width: 130px;"><?php echo $this->lang->line('tel')?>:</td>
 									<td>
 										<a href="tel:84 1234 5678">
-											84 1234 5678
+											<?php echo $value['tel']?>
 										</a>
 									</td>
 								</tr>
 								<tr>
-									<td>Email:</td>
+									<td style="width: 130px;">Email:</td>
 									<td>
 										<a href="mailto:contact@ciel.vn">
-											contact@ciel.vn
+											<?php echo $value['email']?>
 										</a>
 									</td>
 								</tr>
@@ -58,7 +58,7 @@
 						</div>
 					</div>
 				</div>
-			<?php } ?>
+			<?php endforeach ?>
 		</div>
 	</div>
 
@@ -86,7 +86,7 @@
                         <?php
                         //echo form_label('Họ tên (*)', 'contact_name');
                         echo form_error('contact_name');
-                        echo form_input('contact_name', set_value('contact_name'), 'class="form-control" id="contact_name" placeholder="Full Name" ');
+                        echo form_input('contact_name', set_value('contact_name'), 'class="form-control" id="contact_name" placeholder="'.$this->lang->line('full_name').'" ');
                         ?>
 					</div>
 
@@ -101,7 +101,7 @@
                         <?php
                         //echo form_label('Số điện thoại (*)', 'contact_phone');
                         echo form_error('contact_phone');
-                        echo form_input('contact_phone', set_value('contact_phone'), 'class="form-control" id="contact_phone" placeholder="Phone Number (optional)" ');
+                        echo form_input('contact_phone', set_value('contact_phone'), 'class="form-control" id="contact_phone" placeholder="'.$this->lang->line('tel').'" ');
                         ?>
 					</div>
 
@@ -109,13 +109,13 @@
                         <?php
                         //echo form_label('Nội dung', 'contact_message');
                         echo form_error('contact_message');
-                        echo form_textarea('contact_message', set_value('contact_message'), 'class="form-control" id="contact_message" placeholder="Message to Us..." ');
+                        echo form_textarea('contact_message', set_value('contact_message'), 'class="form-control" id="contact_message" placeholder="'.$this->lang->line('message_contact').'" ');
                         ?>
 					</div>
 
 					<div class="form-group col-xs-12 col-md-12">
 						<div class="form-foot">
-                            <?php echo form_submit('submit', 'Submit', 'class="btn btn-primary"'); ?>
+                            <?php echo form_submit('submit', $this->lang->line('submit'), 'class="btn btn-primary"'); ?>
 						</div>
 					</div>
 				</div>
@@ -126,7 +126,7 @@
 	</div>
 
 	<div class="container-fluid connection">
-		<h1>Get Connected</h1>
+		<h1><?php echo $this->lang->line('get_connected')?></h1>
 		<div class="line"></div>
 		<ul>
 			<li>

@@ -48,7 +48,7 @@
 
                         <div class="form-group col-xs-12">
                             <label class="control-label">Loại danh mục</label>
-                            <select name="type" id="select_templates" class="form-control" required="required" onchange="check_type_product(this)">
+                            <select name="type" id="select_templates" class="form-control disabled" disabled required="required" onchange="check_type_product(this)">
                                 <option value="0"<?php echo ($detail['type'] == 0)?' selected': '' ?>>Váy</option>
                                 <option value="1"<?php echo ($detail['type'] == 1)?' selected': '' ?>>Phụ kiện</option>
                             </select>
@@ -76,7 +76,7 @@
                                                 <?php
                                                     echo form_label('Tiêu đề', 'title_'. $key);
                                                     echo form_error('title_'. $key);
-                                                    echo form_input('title_'. $key, $detail['title_'. $key], 'class="form-control" id="title_'.$key.'"');
+                                                    echo form_input('title_'. $key, $detail['title_'. $key], 'class="form-control disabled" id="title_'.$key.'" disabled');
 
                                                     echo form_label('Từ khóa meta', 'metakeywords_'. $key);
                                                     echo form_error('metakeywords_'. $key);
@@ -100,7 +100,7 @@
                                 <?php endforeach ?>
                             </div>
                         </div>
-                        <?php echo form_submit('submit_shared', 'OK', 'class="btn btn-primary"'); ?>
+                        <?php echo form_submit('submit_shared', 'OK', 'class="btn btn-primary" onclick="removedisable()"'); ?>
                         <?php echo form_close(); ?>
                     </div>
                 </div>
@@ -110,7 +110,13 @@
 </div>
 <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/admin/script.js') ?>"></script> -->
 <!-- <script type="text/javascript" src="<?php echo base_url('assets/js/admin/common.js') ?>"></script> -->
-
+<script type="text/javascript">
+    function removedisable(){
+        for (var i = 0; i < document.querySelectorAll('.disabled').length; i++) {
+            document.querySelectorAll('.disabled')[i].removeAttribute('disabled');
+        }
+    }
+</script>
 <script type="text/javascript">
     switch(window.location.origin){
         case 'http://diamondtour.vn':

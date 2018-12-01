@@ -5,7 +5,7 @@
 */
 class Post_model extends MY_Model{
 	public $table = 'post';
-    public function get_by_post_category_id($post_category_id = array(), $select = array(), $lang = '') {
+    public function get_by_post_category_id($post_category_id = array(), $select = array(), $lang = '', $limit = '') {
         $this->db->query('SET SESSION group_concat_max_len = 10000000');
         $this->db->select($this->table .'.*');
         if(in_array('title', $select)){
@@ -32,6 +32,9 @@ class Post_model extends MY_Model{
         $this->db->where($this->table .'.is_activated', 0);
         $this->db->where_in($this->table .'.post_category_id', $post_category_id);
         $this->db->group_by($this->table .".id");
+        if($limit != ''){
+            $this->db->limit($limit);
+        }
         return $this->db->get()->result_array();
     }
     public function get_by_slug($slug, $select = array(), $lang = '') {

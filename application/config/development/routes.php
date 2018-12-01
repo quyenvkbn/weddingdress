@@ -64,8 +64,12 @@ $route['admin'] = 'admin/dashboard';
 
 $route['san-pham/([a-zA-Z0-9-_]+)'] = 'product/detail/$1';
 $route['nhom/([a-zA-Z0-9-_]+)'] = 'product/category/$1';
-$route['nhom'] = 'product/index';
+$route['nhom'] = 'product/category';
 
-$route['bai-viet/([a-zA-Z0-9-_]+)'] = 'post/detail/$1';
-$route['danh-muc/([a-zA-Z0-9-_]+)'] = 'post/category/$1';
-$route['danh-muc'] = 'post/index';
+$route['bai-viet/([a-zA-Z0-9-_]+)'] = 'blogs/detail/$1';
+$route['danh-muc/([a-zA-Z0-9-_]+)'] = 'blogs/category/$1';
+$route['danh-muc'] = 'blogs/index';
+
+$route['bo-suu-tap/([a-zA-Z0-9-_]+)'] = 'collections/detail/$1';
+$route['bo-suu-tap'] = 'collections/index';
+

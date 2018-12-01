@@ -38,18 +38,20 @@
                     </div>
 
                     <div class="row">
-                        <div class="col-md-6">
-                            <a href="<?php echo base_url('admin/'.$controller.'/create') ?>" class="btn btn-primary" role="button">Thêm mới</a>
-                        </div>
-                        <div class="col-md-6">
-                            <form action="<?php echo base_url('admin/'.$controller.'/index') ?>" method="get">
-                                <div class="input-group">
-                                    <input type="text" class="form-control" placeholder="Tìm kiếm ..." name="search" value="">
-                                    <span class="input-group-btn">
-                                        <input type="submit" class="btn btn-block btn-primary" value="Tìm kiếm">
-                                    </span>
-                                </div>
-                            </form>
+                        <div class="col-xs-12">
+                            <div class="col-md-6">
+                                <a href="<?php echo base_url('admin/'.$controller.'/create') ?>" class="btn btn-primary hidden" role="button">Thêm mới</a>
+                            </div>
+                            <div class="col-md-6">
+                                <form action="<?php echo base_url('admin/'.$controller.'/index') ?>" method="get">
+                                    <div class="input-group">
+                                        <input type="text" class="form-control" placeholder="Tìm kiếm ..." name="search" value="">
+                                        <span class="input-group-btn">
+                                            <input type="submit" class="btn btn-block btn-primary" value="Tìm kiếm">
+                                        </span>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -127,17 +129,20 @@
                         <button class="btn btn-default btn-sm" type="button" data-toggle="collapse" data-target="#collapse_1" aria-expanded="false" aria-controls="collapse_1">See Detail</button>
                     </td>
                     <td>
-                        <?php if ($value['is_activated'] == 0): ?>
-                            <a href="javascript:void(0);" onclick="deactive('product_category', <?php echo $value['id'] ?>, 'Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và banner sử dụng danh mục cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục"><i class="fa fa-low-vision" aria-hidden="true"></i> </a>
-                            <!-- Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và các menu chọn danh mục là menu chính cũng tắt theo -->
-                        <?php else: ?>
-                            <a href="javascript:void(0);" onclick="active('product_category', <?php echo $value['id'] ?>, 'Chăc chắn bật danh mục')" class="dataActionDelete" title="Bật danh mục"><i class="fa fa-eye" aria-hidden="true"></i> </a>
-                        <?php endif ?>
-                        
+                        <div class="hidden">
+                            <?php if ($value['is_activated'] == 0): ?>
+                                <a href="javascript:void(0);" onclick="deactive('product_category', <?php echo $value['id'] ?>, 'Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và banner sử dụng danh mục cũng tắt theo)')" class="dataActionDelete" title="Tắt danh mục"><i class="fa fa-low-vision" aria-hidden="true"></i> </a>
+                                <!-- Chăc chắn tắt danh mục(Lưu ý: Khi tắt danh mục thì tất cả danh mục con, sản phẩm của danh mục và các menu chọn danh mục là menu chính cũng tắt theo -->
+                            <?php else: ?>
+                                <a href="javascript:void(0);" onclick="active('product_category', <?php echo $value['id'] ?>, 'Chăc chắn bật danh mục')" class="dataActionDelete" title="Bật danh mục"><i class="fa fa-eye" aria-hidden="true"></i> </a>
+                            <?php endif ?>
+                        </div>
                         &nbsp&nbsp&nbsp
                         <a href="<?php echo base_url('admin/'.$controller.'/edit/'. $value['id']) ?>" class="dataActionEdit"><i class="fa fa-pencil" aria-hidden="true"></i> </a>
                         &nbsp&nbsp&nbsp
-                        <a href="javascript:void(0);" onclick="remove('product_category', <?php echo $value['id'] ?>)" class="dataActionDelete"><i class="fa fa-remove" aria-hidden="true"></i> </a>
+                        <div style="display: none;">
+                            <a href="javascript:void(0);" onclick="remove('product_category', <?php echo $value['id'] ?>)" class="dataActionDelete"><i class="fa fa-remove" aria-hidden="true"></i> </a>
+                        </div>
                     </td>
                 </tr>
                 <tr>

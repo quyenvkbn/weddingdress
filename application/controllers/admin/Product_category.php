@@ -59,6 +59,7 @@ class Product_category extends Admin_Controller{
     }
 
     public function create($id = ''){
+        return redirect('admin/'. $this->data['controller'],'refresh');
         if(isset($id) && is_numeric($id)){
             redirect('admin/'. $this->data['controller'], 'refresh');
             $this->data['id'] = $id;
@@ -183,6 +184,7 @@ class Product_category extends Admin_Controller{
     }
 
     function remove(){
+        return redirect('admin/'. $this->data['controller'],'refresh');
         $id = $this->input->post('id');
         $this->load->model("menu_model");
         $this->load->model('product_model');

@@ -95,6 +95,46 @@ class Product_model extends MY_Model{
         $this->db->order_by($this->table .".sort", $order);
         return $this->db->get()->result_array();
     }
+    public function get_all_and_by_category($select = array(), $lang = '',$limit = '',$hot = '', $order="DESC",$category_id = '') {
+        $this->db->query('SET SESSION group_concat_max_len = 10000000');
+        $this->db->select($this->table .'.*, product_category_lang.title as category');
+        if(in_array('title', $select)){
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.title ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_title');
+        }
+        if(in_array('description', $select)){
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.description ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_description');
+        }
+        if(in_array('content', $select)){
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.content ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_content');
+        }
+        if($select == null){
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.title ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_title');
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.description ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_description');
+            $this->db->select('GROUP_CONCAT('. $this->table_lang .'.content ORDER BY '. $this->table_lang .'.language separator \' ||| \') as '. $this->table .'_content');
+        }
+        $this->db->from($this->table);
+        $this->db->join($this->table_lang, $this->table_lang .'.'. $this->table .'_id = '. $this->table .'.id', 'left');
+        $this->db->join('product_category_lang', 'product_category_lang.product_category_id = '. $this->table .'.'. $this->table.'_category_id', 'left');
+        if($lang != ''){
+            $this->db->where($this->table_lang .'.language', $lang);
+            $this->db->where('product_category_lang.language', $lang);
+        }
+        if($hot != ''){
+            $this->db->where($this->table .'.hot', $hot);
+        }
+        if($category_id != ''){
+            $this->db->where($this->table .'.product_category_id', $category_id);
+        }
+        $this->db->where($this->table .'.is_deleted', 0);
+        $this->db->where($this->table .'.is_activated', 0);
+        $this->db->group_by($this->table .".id");
+        $this->db->order_by($this->table .".id", $order);
+        if($limit != ''){
+            $this->db->limit($limit);
+        }
+        return $this->db->get()->result_array();
+    }
+
     public function get_by_slug($slug, $select = array(), $lang = '') {
         $this->db->query('SET SESSION group_concat_max_len = 10000000');
         $this->db->select($this->table .'.*,'.$this->table.'_category_lang.title as parent_title, collection_lang.title as collection_title');
@@ -210,6 +250,35 @@ class Product_model extends MY_Model{
         $execute = $this->db->query($sql, array(0,'%"'.$this->db->escape_like_str($id_color).'"%', '%,'.$this->db->escape_like_str($id_color).'"%', '%"'.$this->db->escape_like_str($id_color).',%', '%,'.$this->db->escape_like_str($id_color).',%'));
         return $execute->result_array();
     }
+
+    public function get_all_search($number = 0,$sale='sale":"true',$notSale = 'sale":"false',$showpromotion = 'showpromotion":"true') {
+        $sql = "SELECT product.* FROM product WHERE is_deleted = ? AND is_activated = ? AND ((common LIKE ? AND price > ?) OR (common LIKE ? AND  common LIKE ? AND pricepromotion > ?))";
+        $execute = $this->db->query($sql, array(0,0,'%"'.$notSale.'"%', $number, '%"'.$sale.'"%','%"'.$showpromotion.'"%', $number));
+        return $execute->result_array();
+    }
+
+
+
+    public function get_all_search_sale($category_id = '',$lang='vi',$number_one = 0,$number_tow = 1000000000,$sale='sale":"true',$notSale = 'sale":"false',$showpromotion = 'showpromotion":"true') {
+        $sql = "SELECT product.*,product_lang.title FROM product INNER JOIN product_lang ON product_lang.product_id = product.id WHERE product.is_deleted = ? AND product.is_activated = ? AND product_lang.language = ? AND product.product_category_id = ? AND ((product.common LIKE ? AND product.price > ? AND product.price < ?) OR (product.common LIKE ? AND  product.common LIKE ? AND product.pricepromotion > ? AND product.pricepromotion < ?))";
+        $execute = $this->db->query($sql, array(0,0,$lang,$category_id,'%"'.$notSale.'"%', (int)($number_one), (int)($number_tow), '%"'.$sale.'"%','%"'.$showpromotion.'"%', (int)($number_one), (int)($number_tow)));
+        return $execute->result_array();
+    }
+
+    public function get_all_search_home($lang='vi',$number_one = 0,$number_tow = 1000000000,$sale='sale":"true',$notSale = 'sale":"false',$showpromotion = 'showpromotion":"true') {
+        $sql = "SELECT product.*,product_lang.title FROM product INNER JOIN product_lang ON product_lang.product_id = product.id WHERE product.is_deleted = ? AND product.is_activated = ? AND product_lang.language = ? AND ((product.common LIKE ? AND product.price > ? AND product.price < ?) OR (product.common LIKE ? AND  product.common LIKE ? AND product.pricepromotion > ? AND product.pricepromotion < ?))";
+        $execute = $this->db->query($sql, array(0,0,$lang,'%"'.$notSale.'"%', (int)($number_one), (int)($number_tow), '%"'.$sale.'"%','%"'.$showpromotion.'"%', (int)($number_one), (int)($number_tow)));
+        return $execute->result_array();
+    }
+
+    public function get_all_search_rent($category_id = '',$lang='vi',$number_one = 0,$number_tow = 1000000000,$rent='rent":"true',$sale='rent_sale":"true',$notSale = 'rent_sale":"false',$showpromotion = 'showpromotion_rent":"true') {
+        $sql = "SELECT product.*,product_lang.title FROM product INNER JOIN product_lang ON product_lang.product_id = product.id WHERE product.is_deleted = ? AND product.is_activated = ? AND product_lang.language = ? AND common LIKE ? AND product.product_category_id = ? AND ((product.common LIKE ? AND product.price > ? AND product.price < ?) OR (product.common LIKE ? AND  product.common LIKE ? AND product.pricepromotion > ? AND product.pricepromotion < ?))";
+        $execute = $this->db->query($sql, array(0,0,$lang,'%"'.$rent.'"%',$category_id,'%"'.$notSale.'"%', (int)$number_one, (int)$number_tow, '%"'.$sale.'"%','%"'.$showpromotion.'"%', (int)$number_one, (int)$number_tow));
+        return $execute->result_array();
+    }
+
+
+
     public function count_by_category_id($lang = '',$category_id = ''){
         $this->db->select('*');
         $this->db->from($this->table);
@@ -352,6 +421,22 @@ class Product_model extends MY_Model{
             $this->db->where($this->table_lang .'.language', $lang);
         }
         $this->db->limit($limit, $start);
+        $this->db->group_by($this->table_lang .'.'. $this->table .'_id');
+        $this->db->order_by($this->table .".id", $order);
+
+        return $result = $this->db->get()->result_array();
+    }
+    public function get_all_front_end($order = 'desc',$lang = '',$collection_id){
+        $this->db->select($this->table .'.*, '. $this->table_lang .'.title');
+        $this->db->from($this->table);
+        $this->db->join($this->table_lang, $this->table_lang .'.'. $this->table .'_id = '. $this->table .'.id');
+        $this->db->where($this->table .'.is_deleted', 0);
+        $this->db->where($this->table .'.is_activated', 0);
+        $this->db->where($this->table .'.collection_id', $collection_id);
+        if($lang != ''){
+            $this->db->where($this->table_lang .'.language', $lang);
+        }
+        
         $this->db->group_by($this->table_lang .'.'. $this->table .'_id');
         $this->db->order_by($this->table .".id", $order);
 

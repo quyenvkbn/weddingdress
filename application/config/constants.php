@@ -224,3 +224,9 @@ defined('MESSAGE_ERROR_REMOVE_FEATURES') OR define('MESSAGE_ERROR_REMOVE_FEATURE
 defined('MESSAGE_ERROR_REMOVE_TRADEMARK') OR define('MESSAGE_ERROR_REMOVE_TRADEMARK', 'Bạn không thể xóa thương hiệu này vì có sản phâm %u sử dụng thương hiệu này');
 
 /*=====  End of Message for Create  ======*/
+
+/**
+ * Change Language
+ */
+defined('MESSAGE_CHANGE_LANGUAGE_SUCCESS') OR define('MESSAGE_CHANGE_LANGUAGE_SUCCESS', 'changed');
+defined('MESSAGE_CHANGE_LANGUAGE_FAIL') OR define('MESSAGE_CHANGE_LANGUAGE_FAIL', 'keep');
